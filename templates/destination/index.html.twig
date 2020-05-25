@@ -1,0 +1,401 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DestinationController!{% endblock %}
+
+{% block body %}
+   <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Destinations</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+
+
+
+    <div class="popular_places_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="filter_result_wrap">
+                        <h3>Filter de résultats</h3>
+                        <div class="filter_bordered">
+                            <div class="filter_inner">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="single_select">
+                                            <select>
+                                                <option data-display="Région">Région</option>
+                                                <option value="1">l'Oriental</option>
+                                                <option value="2">Tanger-Tétouan-Al Hoceïma</option>
+                                                <option value="3">Fès-Meknès</option>
+                                                <option value="4">Rabat-Salé-Kénitra</option>
+                                                <option value="5">Béni Mellal-Khénifra</option>
+                                                <option value="6">Casablanca-Settat</option>
+                                                <option value="1">Souss-Massa</option>
+                                                <option value="1">Dakhla-Oued Ed Dahab</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_select">
+                                            <select>
+                                                <option data-display="Ville">Ville</option>
+                                                <option value="1">Casablanca</option>
+                                                <option value="2">Rabat</option>
+                                                <option value="3">Marrakech</option>
+                                                <option value="4">Ouarzazate</option>
+                                                <option value="5">Azilal</option>
+                                                <option value="6">Aït Bouguemez</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_select">
+                                            <select>
+                                                <option data-display="Type voyage">Type voyage</option>
+                                                <option value="1">Trip</option>
+                                                <option value="2">Famille</option>
+                                                <option value="4">Aventure</option>
+                                                <option value="4">Séjour</option>
+                                                <option value="4">Randonnée</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="reset_btn">
+                                <button class="boxed-btn4" type="submit">Réinitialiser</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-agadir.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Agadir</h3>
+                                    </a>
+                                    <p>Souss-Massa</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img style="height: 233.5px;" src="img/place/Aguelmam_Azegza_1.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Aguelmam Azegza (Khénifra) </h3>
+                                    </a>
+                                    <p>Béni Mellal-Khénifra</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img  src="img/place/maroc-casablanca-mosquee-hassan.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Casablanca</h3>
+                                    </a>
+                                    <p>Casablanca-Settat</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img style="height: 233.5px;" src="img/place/Cascades_Ouzoud_2.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Cascades d'Ouzoud</h3>
+                                    </a>
+                                    <p>Béni Mellal-Khénifra</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-chefchaouen.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Chefchaouen</h3>
+                                    </a>
+                                    <p>Tanger-Tétouan-Al Hoceïma</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-essaouira.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Essaouira</h3>
+                                    </a>
+                                    <p>Marrakech-Safi</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-fes.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Fès</h3>
+                                    </a>
+                                    <p>Fès-Meknès</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-meknes.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Meknès</h3>
+                                    </a>
+                                    <p>Fès-Meknès</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-ouarzazate.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Ouarzazate</h3>
+                                    </a>
+                                    <p>Drâa-Tafilalet</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="img/place/maroc-rabat.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Rabat</h3>
+                                    </a>
+                                    <p>Rabat-Salé-Kénitra</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img style="height: 233.5px;" src="img/place/Ait_Bouguemez.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Aït Bouguemez</h3>
+                                    </a>
+                                    <p>Béni Mellal-Khénifra</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img style="height: 233.5px;" src="img/place/Azilal_1.jpg" alt="">
+
+                                </div>
+                                <div class="place_info">
+                                    <a href="/destination/details">
+                                        <h3>Azilal</h3>
+                                    </a>
+                                    <p>Béni Mellal-Khénifra</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">(20 Review)</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+{% endblock %}
