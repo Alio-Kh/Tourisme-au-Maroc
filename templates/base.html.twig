@@ -36,7 +36,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="/home">
+                                    <a href="{{ path('home') }}">
                                         <h2 style="color: red;">LOGO </h2> 
                                     </a>
                                 </div>
@@ -45,11 +45,11 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a class="active" href="/home">home</a></li>
-                                            <li><a class="" href="/destination">Destination</a></l /li>
+                                            <li><a class="active" href="{{path('home')}}">Accuiel</a></li>
+                                            <li><a class="" href="{{path('destination')}}">Destination</a></l /li>
                                            
     
-                                            <li><a href="/contact">Contact</a></li>
+                                            <li><a  href="{{ path('contact') }}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>

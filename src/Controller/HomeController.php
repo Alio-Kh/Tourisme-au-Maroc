@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
     /**
-     * @Route("/home")
+     * @Route("/accuiel")
      */
 class HomeController extends AbstractController
 {
