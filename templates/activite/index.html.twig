@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Type</th>
                 <th>ImgPath</th>
+                <th>Nom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ activite.id }}</td>
                 <td>{{ activite.type }}</td>
                 <td>{{ activite.imgPath }}</td>
+                <td>{{ activite.nom }}</td>
                 <td>
                     <a href="{{ path('activite_show', {'id': activite.id}) }}">show</a>
                     <a href="{{ path('activite_edit', {'id': activite.id}) }}">edit</a>
@@ -27,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>ImgPath</th>
+                <th>Description</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ hotel.id }}</td>
                 <td>{{ hotel.nom }}</td>
                 <td>{{ hotel.imgPath }}</td>
+                <td>{{ hotel.description }}</td>
                 <td>
                     <a href="{{ path('hotel_show', {'id': hotel.id}) }}">show</a>
                     <a href="{{ path('hotel_edit', {'id': hotel.id}) }}">edit</a>
@@ -27,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -10,6 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>ImgPath</th>
+                <th>Nom</th>
+                <th>Description</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +20,8 @@
             <tr>
                 <td>{{ resto.id }}</td>
                 <td>{{ resto.imgPath }}</td>
+                <td>{{ resto.nom }}</td>
+                <td>{{ resto.description }}</td>
                 <td>
                     <a href="{{ path('resto_show', {'id': resto.id}) }}">show</a>
                     <a href="{{ path('resto_edit', {'id': resto.id}) }}">edit</a>
@@ -25,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

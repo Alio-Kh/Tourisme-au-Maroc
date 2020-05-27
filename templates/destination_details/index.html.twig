@@ -142,150 +142,35 @@
                 </div>
             </div>
             <div class="row">
-                {# <div id="Rose_valley" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/hotel/hotel-1.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>Rose Valley Hotel </h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div> #}
                 {% for marker in markers %}
-                    <div id={{marker.name}} class="col-lg-4 col-md-6">
-                        <div class="single_place">
-                            <div class="thumb">
-                                <img src="{{asset('img/hotel/hotel-1.jpg')}}" alt="">
-                            </div>
-                            <div class="place_info">
-                                <a href="destination_details.html">
-                                    <h3>{{marker.name}}</h3>
-                                </a>
-                                <div class="rating_days d-flex justify-content-between">
-                                    <span class="d-flex justify-content-center align-items-center">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <a href="#">(20 Review)</a>
-                                    </span>
+                    {% for hotel in  hotels%}
+                        {% if marker.name == hotel.nom %}
+                            <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                <div class="single_place">
+                                    <div class="thumb">
+                                        <img src="{{asset(hotel.imgPath)}}" alt="">
+                                    </div>
+                                    <div class="place_info">
+                                        <a href="destination_details.html">
+                                            <h3>{{marker.name}}</h3>
+                                        </a>
+                                        <div class="rating_days d-flex justify-content-between">
+                                            <span class="d-flex justify-content-center align-items-center">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <a href="#">(20 Review)</a>
+                                            </span>
 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
+                        {% endif %}
+                    {% endfor %}
                 {% endfor%}
-
-                {# <div id="Oscar_Hotel" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/hotel/hotel-2.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>Oscar Hotel by Atlas Studios</h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="Al_Baraka" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/hotel/hotel-3.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3> Al Baraka des loisirs</h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="Hotel_Riad" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/hotel/hotel-4.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>Hotel Riad </h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="La_Gazelle" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/hotel/hotel-5.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>Hotel La Gazelle </h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div> #}
-
             </div>
         </div>
     </div>
@@ -302,84 +187,40 @@
                 </div>
             </div>
             <div class="row">
-                <div id="Gironde" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/resto/resto-1.jpg')}}" alt="">
-
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>La Gironde</h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="La_Kasbah_des_sables" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img style="width: 400px; height: 425px;" src="{{asset('img/resto/La_Kasbah_des_sables.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>La Kasbah des sables</h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="Accord_Majeur" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img src="{{asset('img/resto/resto-3.jpg')}}" alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>Restaurant Accord Majeur</h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
+                {% for marker in markers %}
+                        {% for resto in  restos%}
+                            {% if marker.name == resto.nom %}
+                                <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                    <div class="single_place">
+                                        <div class="thumb">
+                                            <img style="width: 400px; height: 425px;" src="{{asset(resto.imgPath)}}" alt="">
+                                        </div>
+                                        <div class="place_info">
+                                            <a href="destination_details.html">
+                                                <h3>{{marker.name}}</h3>
+                                            </a>
+                                            <div class="rating_days d-flex justify-content-between">
+                                                <span class="d-flex justify-content-center align-items-center">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <a href="#">(20 Review)</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor%}
+                 </div>
         </div>
     </div>
     <!-- end Restaurants-->
 
-    <!-- start Restaurants-->
+    <!-- start activite-->
     <div class="popular_places_area">
         <div class="container">
             <div class="row justify-content-center">
@@ -390,58 +231,40 @@
                 </div>
             </div>
             <div class="row">
-                <div id="Kasbah_Taourirt" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img style="width: 400px; height: 425px;" src="{{asset('img/activite/Kasbah_Taourirt.jpg')}}" alt="">
-
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>La Kasbah Taourirt</h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="Musée_Cinema" class="col-lg-4 col-md-6">
-                    <div class="single_place">
-                        <div class="thumb">
-                            <img style="width: 400px; height: 425px;" src="{{asset('img/activite/musée_du_cinéma_ouarzazate.jpg')}}"
-                                alt="">
-                        </div>
-                        <div class="place_info">
-                            <a href="destination_details.html">
-                                <h3>Musée du Cinema </h3>
-                            </a>
-                            <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <a href="#">(20 Review)</a>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             {% for marker in markers %}
+                        {% for activite in  activites %}
+                            {% if marker.name == activite.nom %}
+                                <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                    <div class="single_place">
+                                        <div class="thumb">
+                                            <img style="width: 400px; height: 425px;" src="{{asset(activite.imgPath)}}" alt="">
+                                        </div>
+                                        <div class="place_info">
+                                            <a href="destination_details.html">
+                                                <h3>{{marker.name}}</h3>
+                                            </a>
+                                            <div class="rating_days d-flex justify-content-between">
+                                                <span class="d-flex justify-content-center align-items-center">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <a href="#">(20 Review)</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor%}
             </div>
         </div>
     </div>
     <!-- end Restaurants-->
+
+
     <div class="popular_places_area">
         <div class="container">
             <div class="row justify-content-center">
@@ -450,6 +273,36 @@
                         <h3>Campings</h3>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+             {% for marker in markers %}
+                    {% for camping in  campings %}
+                            {% if marker.name == camping.nom %}
+                                <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                    <div class="single_place">
+                                        <div class="thumb">
+                                            <img style="width: 400px; height: 425px;" src="{{asset(camping.imgPath)}}" alt="">
+                                        </div>
+                                        <div class="place_info">
+                                            <a href="destination_details.html">
+                                                <h3>{{marker.name}}</h3>
+                                            </a>
+                                            <div class="rating_days d-flex justify-content-between">
+                                                <span class="d-flex justify-content-center align-items-center">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <a href="#">(20 Review)</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor%}
             </div>
         </div>
     </div>

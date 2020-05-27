@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Resto;
-use App\Form\Resto1Type;
+use App\Form\Resto2Type;
 use App\Repository\RestoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class RestoController extends AbstractController
     public function new(Request $request): Response
     {
         $resto = new Resto();
-        $form = $this->createForm(Resto1Type::class, $resto);
+        $form = $this->createForm(Resto2Type::class, $resto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class RestoController extends AbstractController
      */
     public function edit(Request $request, Resto $resto): Response
     {
-        $form = $this->createForm(Resto1Type::class, $resto);
+        $form = $this->createForm(Resto2Type::class, $resto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Hotel;
-use App\Form\HotelType;
+use App\Form\Hotel1Type;
 use App\Repository\HotelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class HotelController extends AbstractController
     public function new(Request $request): Response
     {
         $hotel = new Hotel();
-        $form = $this->createForm(HotelType::class, $hotel);
+        $form = $this->createForm(Hotel1Type::class, $hotel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class HotelController extends AbstractController
      */
     public function edit(Request $request, Hotel $hotel): Response
     {
-        $form = $this->createForm(HotelType::class, $hotel);
+        $form = $this->createForm(Hotel1Type::class, $hotel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
