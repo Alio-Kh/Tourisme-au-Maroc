@@ -54,6 +54,11 @@ class Ville
      */
     private $restos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Region", inversedBy="villes")
+     */
+    private $region;
+
     public function __construct()
     {
         $this->hotels = new ArrayCollection();
@@ -219,6 +224,18 @@ class Ville
     public function __toString()
     {
             return $this->getName();
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
+
+        return $this;
     }
 
 

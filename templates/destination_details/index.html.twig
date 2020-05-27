@@ -53,10 +53,6 @@
         </div>
     </div>
     
- {% for marker in markers %}
-
-
- {% endfor%}
 
     <!-- start map-->
     <div class="container">
@@ -125,8 +121,8 @@
                 <script>
                 function initMap() {
                     var uluru = {
-                        lat: 30.916663,
-                        lng: -6.916663
+                        lat: {{villeMarker.lat}},
+                        lng: {{villeMarker.lng}}
                     };
 
                     var map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: uluru, scrollwheel: true, /*mapTypeId: 'satellite'*/mapTypeId: google.maps.MapTypeId.ROADMAP });
