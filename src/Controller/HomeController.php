@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
     /**
-     * @Route("/home")
+     * @Route("/")
      */
 class HomeController extends AbstractController
 {
@@ -16,7 +16,7 @@ class HomeController extends AbstractController
      */
     public function index(VilleRepository $villeRepository)
     { 
-        $villes=$villeRepository->findAll();
+        $villes = $villeRepository->findAll();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController','villes'=>$villes,
         ]);

@@ -1,4 +1,9 @@
 {
+    "config": {
+        "platform": {
+          "php": "5.3.29"
+        }
+      },
     "_readme": [
         "This file locks the dependencies of your project to a known state",
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
@@ -1628,11 +1633,11 @@
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.1.0 || ^2.0",
-                "php": "^7.4.0"
+                "composer-plugin-api": "^1.0",
+                "php": ">=7.1"
             },
             "require-dev": {
-                "composer/composer": "^1.9.3 || ^2.0@dev",
+                "composer/composer": "^1.0.2",
                 "doctrine/coding-standard": "^7.0.2",
                 "ext-zip": "^1.15.0",
                 "infection/infection": "^0.15.3",

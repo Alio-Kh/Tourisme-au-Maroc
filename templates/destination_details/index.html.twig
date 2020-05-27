@@ -52,28 +52,33 @@
             </div>
         </div>
     </div>
+    
+ {% for marker in markers %}
 
+
+ {% endfor%}
 
     <!-- start map-->
     <div class="container">
         <div class="d-none d-sm-block mb-5 pb-4">
             <div id="map" style="height: 480px; position: relative;"> </div>
             <script>
-                let titles = ["Rose_valley", "Oscar_Hotel", "Al_Baraka", "Hotel_Riad",
-                    "La_Gazelle", "Gironde", "La_Kasbah_des_sables", "Accord_Majeur",
-                    "Kasbah_Taourirt", "Musée_Cinema"];
-                let locations = [
-                    { lat: 30.924896, lng: -6.929778 },
-                    { lat: 30.941371, lng: -6.967543 },
-                    { lat: 30.939755, lng: -6.984196 },
-                    { lat: 30.920985, lng: -6.917401 },
-                    { lat: 30.922876, lng: -6.926737 },
-                    { lat: 30.921716, lng: -6.919862 },
-                    { lat: 30.924578, lng: -6.878655 },
-                    { lat: 30.923452, lng: -6.910536 },
-                    { lat: 30.919967, lng: -6.899065 },
-                    { lat: 30.921711, lng: -6.899371 },
-                ];
+                var markersSet = [];
+            </script>
+           {% for marker in markers %}
+                <script>                        
+                            var marker = { 
+                                position: {
+                                    lat: {{marker.lat}},
+                                    lng: {{marker.lng}}
+                                },
+                                title: "{{marker.name}}"
+                            };
+                            markersSet.push(marker);
+                                               
+                </script>
+                {% endfor%}
+                <script>
                 function initMap() {
                     var uluru = {
                         lat: 30.916663,
@@ -81,7 +86,7 @@
                     };
 
                     var map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: uluru, scrollwheel: true, /*mapTypeId: 'satellite'*/mapTypeId: google.maps.MapTypeId.ROADMAP });
-                    var marker = new google.maps.Marker({ position: uluru, map: map, clickable: true, animation: google.maps.Animation.BOUNCE/*DROP*/ });
+                    var marker = new google.maps.Marker({  position: uluru, map: map, clickable: true, animation: google.maps.Animation.BOUNCE/*DROP*/ });
                     marker.setTitle("cmnt");
                     marker.addListener('click', function () {
                         $('html,body').animate({
@@ -91,18 +96,17 @@
                     });
 
                     var markers = [];
-                    for (let i = 0; i < locations.length; i++) {
+                    for (let i = 0; i < markersSet.length; i++) {
                         var m = new google.maps.Marker({
-                            position: locations[i],
+                            position: markersSet[i].position,
                             map: map
                         });
-                        m.setTitle(titles[i]);
-
+                        m.setTitle(markersSet[i].title);
+                       
                         markers.push(m);
-                    }
-
+                    } 
+ 
                     var infowindow = new google.maps.InfoWindow();
-
                     markers.map((m) => {
                         m.addListener('click', function () {
                             $('html,body').animate({
@@ -138,7 +142,7 @@
                 </div>
             </div>
             <div class="row">
-                <div id="Rose_valley" class="col-lg-4 col-md-6">
+                {# <div id="Rose_valley" class="col-lg-4 col-md-6">
                     <div class="single_place">
                         <div class="thumb">
                             <img src="{{asset('img/hotel/hotel-1.jpg')}}" alt="">
@@ -160,8 +164,35 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="Oscar_Hotel" class="col-lg-4 col-md-6">
+                </div> #}
+                {% for marker in markers %}
+                    <div id={{marker.name}} class="col-lg-4 col-md-6">
+                        <div class="single_place">
+                            <div class="thumb">
+                                <img src="{{asset('img/hotel/hotel-1.jpg')}}" alt="">
+                            </div>
+                            <div class="place_info">
+                                <a href="destination_details.html">
+                                    <h3>{{marker.name}}</h3>
+                                </a>
+                                <div class="rating_days d-flex justify-content-between">
+                                    <span class="d-flex justify-content-center align-items-center">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <a href="#">(20 Review)</a>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor%}
+
+                {# <div id="Oscar_Hotel" class="col-lg-4 col-md-6">
                     <div class="single_place">
                         <div class="thumb">
                             <img src="{{asset('img/hotel/hotel-2.jpg')}}" alt="">
@@ -253,7 +284,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> #}
 
             </div>
         </div>

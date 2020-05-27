@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RestoRepository;
+use App\Repository\ActiviteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RestoRepository::class)
+ * @ORM\Entity(repositoryClass=ActiviteRepository::class)
  */
-class Resto
+class Activite
 {
     /**
      * @ORM\Id()
@@ -16,6 +16,11 @@ class Resto
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $type;
 
     /**
      * @ORM\OneToOne(targetEntity=Marker::class)
@@ -30,6 +35,18 @@ class Resto
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     public function getImgPath(): ?string
