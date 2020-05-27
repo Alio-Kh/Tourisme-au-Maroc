@@ -16,7 +16,7 @@ class HomeController extends AbstractController
      */
     public function index(VilleRepository $villeRepository)
     { 
-        $villes=$villeRepository->findAll();
+        $villes = $villeRepository->findAll();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController','villes'=>$villes,
         ]);

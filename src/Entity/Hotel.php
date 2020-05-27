@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RestoRepository;
+use App\Repository\HotelRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RestoRepository::class)
+ * @ORM\Entity(repositoryClass=HotelRepository::class)
  */
-class Resto
+class Hotel
 {
     /**
      * @ORM\Id()
@@ -18,9 +18,9 @@ class Resto
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Marker::class)
+     * @ORM\Column(type="string", length=60)
      */
-    private $marker;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -28,9 +28,9 @@ class Resto
     private $imgPath;
 
     /**
-     * @ORM\Column(type="string", length=80)
+     * @ORM\OneToOne(targetEntity=Marker::class)
      */
-    private $nom;
+    private $marker;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,6 +40,18 @@ class Resto
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
     }
 
     public function getImgPath(): ?string
@@ -66,27 +78,24 @@ class Resto
         return $this;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
+//     /**
+//     * toString
+//     * @return string
+//     */
+//    public function __toString()
+//    {
+//            return $this->getMarker();
+//    }
 
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
 
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+public function getDescription(): ?string
+{
+    return $this->description;
 }
+
+public function setDescription(string $description): self
+{
+    $this->description = $description;
+
+    return $this;
+}}

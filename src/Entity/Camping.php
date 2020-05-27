@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RestoRepository;
+use App\Repository\CampingRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RestoRepository::class)
+ * @ORM\Entity(repositoryClass=CampingRepository::class)
  */
-class Resto
+class Camping
 {
     /**
      * @ORM\Id()
@@ -23,6 +23,11 @@ class Resto
     private $marker;
 
     /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $type;
+
+    /**
      * @ORM\Column(type="string", length=150)
      */
     private $imgPath;
@@ -32,14 +37,21 @@ class Resto
      */
     private $nom;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $description;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     public function getImgPath(): ?string
@@ -74,18 +86,6 @@ class Resto
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
 
         return $this;
     }
