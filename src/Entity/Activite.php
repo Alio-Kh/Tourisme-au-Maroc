@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Ville;
 
 /**
  * @ORM\Entity(repositoryClass=ActiviteRepository::class)
@@ -22,10 +23,10 @@ class Activite
      */
     private $type;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Marker::class)
-     */
-    private $marker;
+    // /**
+    //  * @ORM\OneToOne(targetEntity=Marker::class)
+    //  */
+    // private $marker;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -36,6 +37,11 @@ class Activite
      * @ORM\Column(type="string", length=80)
      */
     private $nom;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="activites")
+     */
+    private $ville;
 
     public function getId(): ?int
     {
@@ -66,14 +72,26 @@ class Activite
         return $this;
     }
 
-    public function getMarker(): ?Marker
-    {
-        return $this->marker;
-    }
+    // public function getMarker(): ?Marker
+    // {
+    //     return $this->marker;
+    // }
 
-    public function setMarker(?Marker $marker): self
+    // public function setMarker(?Marker $marker): self
+    // {
+    //     $this->marker = $marker;
+
+    //     return $this;
+    // }
+
+    // public function getNom(): ?string
+    // {
+    //     return $this->nom;
+    // }
+
+    public function setNom(string $nom): self
     {
-        $this->marker = $marker;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -83,9 +101,14 @@ class Activite
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function getVille(): ?Ville
     {
-        $this->nom = $nom;
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

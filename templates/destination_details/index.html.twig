@@ -62,22 +62,66 @@
     <div class="container">
         <div class="d-none d-sm-block mb-5 pb-4">
             <div id="map" style="height: 480px; position: relative;"> </div>
+
             <script>
-                var markersSet = [];
+                var hotelMarkers = [];
+                var campingMarkers = [];
+                var restoMarkers = [];
+                var activiteMarkers = [];
             </script>
-           {% for marker in markers %}
+
+           {% for hotelMarker in hotelMarkers %}
                 <script>                        
-                            var marker = { 
-                                position: {
-                                    lat: {{marker.lat}},
-                                    lng: {{marker.lng}}
-                                },
-                                title: "{{marker.name}}"
-                            };
-                            markersSet.push(marker);
-                                               
+                    var hotelMarker = { 
+                        position: {
+                            lat: {{hotelMarker.lat}},
+                            lng: {{hotelMarker.lng}}
+                        },
+                        title: "{{hotelMarker.name}}"
+                    };
+                    hotelMarkers.push(hotelMarker);
                 </script>
-                {% endfor%}
+            {% endfor%}
+
+             {% for campingMarker in campingMarkers %}
+                <script>                        
+                    var campingMarker = { 
+                        position: {
+                            lat: {{campingMarker.lat}},
+                            lng: {{campingMarker.lng}}
+                        },
+                        title: "{{campingMarker.name}}"
+                    };
+                    campingMarkers.push(campingMarker);                         
+                </script>
+            {% endfor%}
+
+             {% for activiteMarker in activiteMarkers %}
+                <script>                        
+                    var activiteMarker = { 
+                        position: {
+                            lat: {{activiteMarker.lat}},
+                            lng: {{activiteMarker.lng}}
+                        },
+                        title: "{{activiteMarker.name}}"
+                    };
+                    activiteMarkers.push(activiteMarker);                     
+                </script>
+            {% endfor%}
+
+             {% for restoMarker in restoMarkers %}
+                <script>                        
+                    var restoMarker = { 
+                        position: {
+                            lat: {{restoMarker.lat}},
+                            lng: {{restoMarker.lng}}
+                        },
+                        title: "{{restoMarker.name}}"
+                    };
+                    restoMarkers.push(restoMarker);                    
+                </script>
+            {% endfor%} 
+
                 <script>
                 function initMap() {
                     var uluru = {
@@ -96,14 +140,44 @@
                     });
 
                     var markers = [];
-                    for (let i = 0; i < markersSet.length; i++) {
-                        var m = new google.maps.Marker({
-                            position: markersSet[i].position,
+                    for (let i = 0; i < hotelMarkers.length; i++) {
+                        var mh = new google.maps.Marker({
+                            position: hotelMarkers[i].position,
                             map: map
                         });
-                        m.setTitle(markersSet[i].title);
+                        mh.setTitle(hotelMarkers[i].title);
                        
-                        markers.push(m);
+                        markers.push(mh);
+                    } 
+
+                    for (let i = 0; i < restoMarkers.length; i++) {
+                        var mr = new google.maps.Marker({
+                            position: restoMarkers[i].position,
+                            map: map
+                        });
+                        mr.setTitle(restoMarkers[i].title);
+                       
+                        markers.push(mr);
+                    } 
+
+                    for (let i = 0; i < campingMarkers.length; i++) {
+                        var mc = new google.maps.Marker({
+                            position: campingMarkers[i].position,
+                            map: map
+                        });
+                        mc.setTitle(campingMarkers[i].title);
+                       
+                        markers.push(mc);
+                    } 
+
+                    for (let i = 0; i < activiteMarkers.length; i++) {
+                        var ma = new google.maps.Marker({
+                            position: activiteMarkers[i].position,
+                            map: map
+                        });
+                        ma.setTitle(activiteMarkers[i].title);
+                       
+                        markers.push(ma);
                     } 
  
                     var infowindow = new google.maps.InfoWindow();
@@ -142,7 +216,7 @@
                 </div>
             </div>
             <div class="row">
-                {% for marker in markers %}
+                {% for marker in hotelMarkers %}
                     {% for hotel in  hotels%}
                         {% if marker.name == hotel.nom %}
                             <div id={{marker.name}} class="col-lg-4 col-md-6">
@@ -175,7 +249,7 @@
         </div>
     </div>
     <!-- end hotels-->
-
+{
     <!-- start Restaurants-->
     <div class="popular_places_area">
         <div class="container">
@@ -187,7 +261,7 @@
                 </div>
             </div>
             <div class="row">
-                {% for marker in markers %}
+                {% for marker in restoMarkers %}
                         {% for resto in  restos%}
                             {% if marker.name == resto.nom %}
                                 <div id={{marker.name}} class="col-lg-4 col-md-6">
@@ -231,7 +305,7 @@
                 </div>
             </div>
             <div class="row">
-             {% for marker in markers %}
+             {% for marker in activiteMarkers %}
                         {% for activite in  activites %}
                             {% if marker.name == activite.nom %}
                                 <div id={{marker.name}} class="col-lg-4 col-md-6">
@@ -275,7 +349,7 @@
                 </div>
             </div>
             <div class="row">
-             {% for marker in markers %}
+             {% for marker in campingMarkers %}
                     {% for camping in  campings %}
                             {% if marker.name == camping.nom %}
                                 <div id={{marker.name}} class="col-lg-4 col-md-6">
