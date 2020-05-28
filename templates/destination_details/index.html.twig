@@ -1,440 +1,441 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DestinationDetailsController!{% endblock %}
+{% block title %}Hello DestinationDetailsController!
+{% endblock %}
 
 {% block body %}
 
-    <div class="destination_banner_wrap overlay">
-        <div class="destination_text text-center">
-            <h3>{{ville.name}}</h3>
-        </div>
-    </div>
-    <!-- start description-->
-    <div class="destination_details_info">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-9">
-                    <div class="destination_info">
-                        <h3>Description</h3>
-                        <p>Ouarzazate est une ville au sud des montagnes du Haut Atlas marocain,
+	<div class="destination_banner_wrap overlay">
+		<div class="destination_text text-center">
+			<h3>{{ville.name}}</h3>
+		</div>
+	</div>
+	<!-- start description-->
+	<div class="destination_details_info">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-9">
+					<div class="destination_info">
+						<h3>Description</h3>
+						<p>Ouarzazate est une ville au sud des montagnes du Haut Atlas marocain,
                             connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
                             palais du XIXe siècle,
                             offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
-                        </p>
-                        <p> Au nord-ouest se trouve la ville fortifiée en terre rouge d'Aït-ben-Haddou, tandis que les
-                            gorges rocailleuses du Toudra s'étendent au nord-est.
-                            Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
-                            Drâa, en direction du désert.</p>
-                        <p> </p>
-                        <div class="single_destination">
-                            <h4>Kasbah de Taourirt</h4>
-                            <p>La Kasbah de Taourirt et son ancienne médina se situent dans le centre-ville de
+						</p>
+						<p>
+							Au nord-ouest se trouve la ville fortifiée en terre rouge d'Aït-ben-Haddou, tandis que les
+                                gorges rocailleuses du Toudra s'étendent au nord-est.
+                                Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
+                                Drâa, en direction du désert.</p>
+						<p></p>
+						<div class="single_destination">
+							<h4>Kasbah de Taourirt</h4>
+							<p>La Kasbah de Taourirt et son ancienne médina se situent dans le centre-ville de
                                 Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
                                 soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
                                 famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
                                 soleil),
                                 cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
                                 dignitaire de la royauté marocaine</p>
-                        </div>
+						</div>
 
-                    </div>
-                    <div class="bordered_1px"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end description-->
+					</div>
+					<div class="bordered_1px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end description-->
 
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="section_title text-center mb_70">
-                <h3>La carte</h3>
-            </div>
-        </div>
-    </div>
-    
-
-    <!-- start map-->
-    <div class="container">
-        <div class="d-none d-sm-block mb-5 pb-4">
-            <div id="map" style="height: 480px; position: relative;"> </div>
-
-            <script>
-                var hotelMarkers = [];
-                var campingMarkers = [];
-                var restoMarkers = [];
-                var activiteMarkers = [];
-            </script>
-
-           {% for hotelMarker in hotelMarkers %}
-                <script>                        
-                    var hotelMarker = { 
-                        position: {
-                            lat: {{hotelMarker.lat}},
-                            lng: {{hotelMarker.lng}}
-                        },
-                        title: "{{hotelMarker.name}}"
-                    };
-                    hotelMarkers.push(hotelMarker);
-                </script>
-            {% endfor%}
-
-             {% for campingMarker in campingMarkers %}
-                <script>                        
-                    var campingMarker = { 
-                        position: {
-                            lat: {{campingMarker.lat}},
-                            lng: {{campingMarker.lng}}
-                        },
-                        title: "{{campingMarker.name}}"
-                    };
-                    campingMarkers.push(campingMarker);                         
-                </script>
-            {% endfor%}
-
-             {% for activiteMarker in activiteMarkers %}
-                <script>                        
-                    var activiteMarker = { 
-                        position: {
-                            lat: {{activiteMarker.lat}},
-                            lng: {{activiteMarker.lng}}
-                        },
-                        title: "{{activiteMarker.name}}"
-                    };
-                    activiteMarkers.push(activiteMarker);                     
-                </script>
-            {% endfor%}
-
-             {% for restoMarker in restoMarkers %}
-                <script>                        
-                    var restoMarker = { 
-                        position: {
-                            lat: {{restoMarker.lat}},
-                            lng: {{restoMarker.lng}}
-                        },
-                        title: "{{restoMarker.name}}"
-                    };
-                    restoMarkers.push(restoMarker);                    
-                </script>
-            {% endfor%} 
-
-                <script>
-                function initMap() {
-                    var uluru = {
-                        lat: {{villeMarker.lat}},
-                        lng: {{villeMarker.lng}}
-                    };
-
-                    var map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: uluru, scrollwheel: true, /*mapTypeId: 'satellite'*/mapTypeId: google.maps.MapTypeId.ROADMAP });
-                    var marker = new google.maps.Marker({  position: uluru, map: map, clickable: true, animation: google.maps.Animation.BOUNCE/*DROP*/ });
-                    marker.setTitle("cmnt");
-                    marker.addListener('click', function () {
-                        $('html,body').animate({
-                            scrollTop: $("#" + marker.getTitle()).offset().top
-                        },
-                            'slow');
-                    });
-
-                    var markers = [];
-                    for (let i = 0; i < hotelMarkers.length; i++) {
-                        var mh = new google.maps.Marker({
-                            position: hotelMarkers[i].position,
-                            map: map
-                        });
-                        mh.setTitle(hotelMarkers[i].title);
-                       
-                        markers.push(mh);
-                    } 
-
-                    for (let i = 0; i < restoMarkers.length; i++) {
-                        var mr = new google.maps.Marker({
-                            position: restoMarkers[i].position,
-                            map: map
-                        });
-                        mr.setTitle(restoMarkers[i].title);
-                       
-                        markers.push(mr);
-                    } 
-
-                    for (let i = 0; i < campingMarkers.length; i++) {
-                        var mc = new google.maps.Marker({
-                            position: campingMarkers[i].position,
-                            map: map
-                        });
-                        mc.setTitle(campingMarkers[i].title);
-                       
-                        markers.push(mc);
-                    } 
-
-                    for (let i = 0; i < activiteMarkers.length; i++) {
-                        var ma = new google.maps.Marker({
-                            position: activiteMarkers[i].position,
-                            map: map
-                        });
-                        ma.setTitle(activiteMarkers[i].title);
-                       
-                        markers.push(ma);
-                    } 
- 
-                    var infowindow = new google.maps.InfoWindow();
-                    markers.map((m) => {
-                        m.addListener('click', function () {
-                            $('html,body').animate({
-                                scrollTop: $("#" + m.getTitle()).offset().top
-                            },
-                                'slow');
-                        });
-                        m.addListener('mouseover', function () {
-                            infowindow.setContent(m.getTitle());
-                            infowindow.open(map, m);
-                        });
-                    });
-
-                }
-
-            </script>
-
-            <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC9pqdr3_Wbb9jGSl9EBKNNNAhcA6puE&callback=initMap"></script>
-
-        </div>
-    </div>
-    <!-- end description-->
-
-    <!-- start hotels-->
-    <div class="popular_places_area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section_title text-center mb_70">
-                        <h3>Hotels</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {% for marker in hotelMarkers %}
-                    {% for hotel in  hotels%}
-                        {% if marker.name == hotel.nom %}
-                            <div id={{marker.name}} class="col-lg-4 col-md-6">
-                                <div class="single_place">
-                                    <div class="thumb">
-                                        <img src="{{asset(hotel.imgPath)}}" alt="">
-                                    </div>
-                                    <div class="place_info">
-                                        <a href="destination_details.html">
-                                            <h3>{{marker.name}}</h3>
-                                        </a>
-                                        <div class="rating_days d-flex justify-content-between">
-                                            <span class="d-flex justify-content-center align-items-center">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <a href="#">(20 Review)</a>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor%}
-            </div>
-        </div>
-    </div>
-    <!-- end hotels-->
-{
-    <!-- start Restaurants-->
-    <div class="popular_places_area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section_title text-center mb_70">
-                        <h3>Restaurants</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {% for marker in restoMarkers %}
-                        {% for resto in  restos%}
-                            {% if marker.name == resto.nom %}
-                                <div id={{marker.name}} class="col-lg-4 col-md-6">
-                                    <div class="single_place">
-                                        <div class="thumb">
-                                            <img style="width: 400px; height: 425px;" src="{{asset(resto.imgPath)}}" alt="">
-                                        </div>
-                                        <div class="place_info">
-                                            <a href="destination_details.html">
-                                                <h3>{{marker.name}}</h3>
-                                            </a>
-                                            <div class="rating_days d-flex justify-content-between">
-                                                <span class="d-flex justify-content-center align-items-center">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <a href="#">(20 Review)</a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor%}
-                 </div>
-        </div>
-    </div>
-    <!-- end Restaurants-->
-
-    <!-- start activite-->
-    <div class="popular_places_area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section_title text-center mb_70">
-                        <h3>Activités</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-             {% for marker in activiteMarkers %}
-                        {% for activite in  activites %}
-                            {% if marker.name == activite.nom %}
-                                <div id={{marker.name}} class="col-lg-4 col-md-6">
-                                    <div class="single_place">
-                                        <div class="thumb">
-                                            <img style="width: 400px; height: 425px;" src="{{asset(activite.imgPath)}}" alt="">
-                                        </div>
-                                        <div class="place_info">
-                                            <a href="destination_details.html">
-                                                <h3>{{marker.name}}</h3>
-                                            </a>
-                                            <div class="rating_days d-flex justify-content-between">
-                                                <span class="d-flex justify-content-center align-items-center">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <a href="#">(20 Review)</a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor%}
-            </div>
-        </div>
-    </div>
-    <!-- end Restaurants-->
+	<div class="row justify-content-center">
+		<div class="col-lg-6">
+			<div class="section_title text-center mb_70">
+				<h3>La carte</h3>
+			</div>
+		</div>
+	</div>
 
 
-    <div class="popular_places_area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section_title text-center mb_70">
-                        <h3>Campings</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-             {% for marker in campingMarkers %}
-                    {% for camping in  campings %}
-                            {% if marker.name == camping.nom %}
-                                <div id={{marker.name}} class="col-lg-4 col-md-6">
-                                    <div class="single_place">
-                                        <div class="thumb">
-                                            <img style="width: 400px; height: 425px;" src="{{asset(camping.imgPath)}}" alt="">
-                                        </div>
-                                        <div class="place_info">
-                                            <a href="destination_details.html">
-                                                <h3>{{marker.name}}</h3>
-                                            </a>
-                                            <div class="rating_days d-flex justify-content-between">
-                                                <span class="d-flex justify-content-center align-items-center">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <a href="#">(20 Review)</a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor%}
-            </div>
-        </div>
-    </div>
+	<!-- start map-->
+	<div class="container">
+		<div class="d-none d-sm-block mb-5 pb-4">
+			<div id="map" style="height: 480px; position: relative;"></div>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- end comntaire-->
+			<script>
+				var hotelMarkers = [];
+var campingMarkers = [];
+var restoMarkers = [];
+var activiteMarkers = [];
+			</script>
+			{% for hotelMarker in hotelMarkers %}
+				<script>
+					var hotelMarker = {
+position: {
+lat: {{ hotelMarker.lat }},
+lng: {{ hotelMarker.lng }}
+},
+title: "{{ hotelMarker.name }}"
+};
+hotelMarkers.push(hotelMarker);
+				</script>
+				{% endfor%}
 
-    <div id="cmnt" class="destination_details_info">
-        <div class="container">
-            <div class="section_title text-center mb_70">
-                <h3>Comentaires</h3>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-9">
-                    <div class="destination_info">
-                        <h4>EL ouadi Abdelati</h4>
-                        <p>Uarzazate ou Ouarzazate (dérivé du français, et de l'arabe, ورزازات, Warzāzāt),
-                            également connu sous le nom de La porte du désert, est une ville du sud du Maroc.
-                            Uarzazate est la capitale de la province du même nom, qui fait partie de la région de
-                            Sus-Masa-Draa.
-                            Il est fréquenté par le tourisme en raison de sa proximité avec les montagnes de l'Atlas et
-                            la vallée du Draa,
-                            dont le nom vient d'une expression berbère signifiant "sans bruit" ou "sans confusion".
-                        </p>
-                        <p> Quant à Taourit, qui est le nom de sa kashba ou citadelle,
-                            elle fait référence au berbère régional auquel elle se dresse sur un monticule.</p>
-                    </div>
-                    <div id="Ali" class="bordered_1px"></div>
-                    <h4>KHYATTI ALi</h4>
-                    <p>Ouarzazate (berbère: z z Warzazat, arabe: ورزازات, littéralement «sans bruit»),
-                        surnommée La porte du désert, est une ville et capitale de la province de Ouarzazate dans le
-                        Souss-Massa-Drâa du centre-sud du Maroc.
-                        Ouarzazate est à une altitude de 1160 mètres au milieu d'un plateau nu au sud des montagnes du
-                        Haut Atlas.
-                        Au sud de la ville se trouve le désert.</p>
-                </div>
-            </div>
+				{% for campingMarker in campingMarkers %}
+					<script>
+						var campingMarker = {
+position: {
+lat: {{ campingMarker.lat }},
+lng: {{ campingMarker.lng }}
+},
+title: "{{ campingMarker.name }}"
+};
+campingMarkers.push(campingMarker);
+					</script>
+					{% endfor%}
 
-            <div class="bordered_1px"></div>
-            <div class="contact_join ">
-                <h3>Ajouter comentaire</h3>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
+					{% for activiteMarker in activiteMarkers %}
+						<script>
+							var activiteMarker = {
+position: {
+lat: {{ activiteMarker.lat }},
+lng: {{ activiteMarker.lng }}
+},
+title: "{{ activiteMarker.name }}"
+};
+activiteMarkers.push(activiteMarker);
+						</script>
+						{% endfor%}
 
-                            <div class="col-lg-12">
-                                <div class="single_input">
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="comentaire"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="submit_btn">
-                                    <button class="boxed-btn4" type="submit">Envoyer</button>
-                                </div>
-                            </div>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
+						{% for restoMarker in restoMarkers %}
+							<script>
+								var restoMarker = {
+position: {
+lat: {{ restoMarker.lat }},
+lng: {{ restoMarker.lng }}
+},
+title: "{{ restoMarker.name }}"
+};
+restoMarkers.push(restoMarker);
+							</script>
+							{% endfor%}
+
+							<script>
+								function initMap() {
+var uluru = {
+lat: {{ villeMarker.lat }},
+lng: {{ villeMarker.lng }}
+};
+
+var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 10,
+center: uluru,
+scrollwheel: true, /*mapTypeId: 'satellite'*/
+mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+var marker = new google.maps.Marker({
+position: uluru, map: map, clickable: true, animation: google.maps.Animation.BOUNCE /*DROP*/
+});
+marker.setTitle("cmnt");
+marker.addListener('click', function () {
+$('html,body').animate({
+scrollTop: $("#" + marker.getTitle()).offset().top
+}, 'slow');
+});
+
+var markers = [];
+for (let i = 0; i < hotelMarkers.length; i++) {
+var mh = new google.maps.Marker({position: hotelMarkers[i].position, map: map});
+mh.setTitle(hotelMarkers[i].title);
+
+markers.push(mh);
+}
+
+for (let i = 0; i < restoMarkers.length; i++) {
+var mr = new google.maps.Marker({position: restoMarkers[i].position, map: map});
+mr.setTitle(restoMarkers[i].title);
+
+markers.push(mr);
+}
+
+for (let i = 0; i < campingMarkers.length; i++) {
+var mc = new google.maps.Marker({position: campingMarkers[i].position, map: map});
+mc.setTitle(campingMarkers[i].title);
+
+markers.push(mc);
+}
+
+for (let i = 0; i < activiteMarkers.length; i++) {
+var ma = new google.maps.Marker({position: activiteMarkers[i].position, map: map});
+ma.setTitle(activiteMarkers[i].title);
+
+markers.push(ma);
+}
+
+var infowindow = new google.maps.InfoWindow();
+markers.map((m) => {
+    m.addListener('click', function () {
+    $('html,body').animate({
+        scrollTop: $("#" + m.getTitle()).offset().top
+    }, 'slow');
+    $("#" + m.getTitle()).hide(1100);
+    $("#" + m.getTitle()).show(2000);
+    //$("#" + m.getTitle()).animate({height: '+=20%'});
 
 
-    <!-- end comntaire-->
+});
 
-{% endblock %}
+m.addListener('mouseover', function () {
+infowindow.setContent(m.getTitle());
+infowindow.open(map, m);
+});
+});
+
+}
+							</script>
+
+							<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC9pqdr3_Wbb9jGSl9EBKNNNAhcA6puE&callback=initMap"></script>
+
+						</div>
+					</div>
+					<!-- end description-->
+
+					<!-- start hotels-->
+					<div class="popular_places_area">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="section_title text-center mb_70">
+										<h3>Hotels</h3>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								{% for marker in hotelMarkers %}
+									{% for hotel in  hotels%}
+										{% if marker.name == hotel.nom %}
+											<div id={{marker.name}} class="col-lg-4 col-md-6">
+												<div class="single_place">
+													<div class="thumb">
+														<img src="{{asset(hotel.imgPath)}}" alt="">
+													</div>
+													<div class="place_info">
+														<a href="destination_details.html">
+															<h3>{{marker.name}}</h3>
+														</a>
+														<div class="rating_days d-flex justify-content-between">
+															<span class="d-flex justify-content-center align-items-center">
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<a href="#">(20 Review)</a>
+															</span>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										{% endif %}
+									{% endfor %}
+									{% endfor%}
+								</div>
+							</div>
+						</div>
+						<!-- end hotels-->
+						{
+						<!-- start Restaurants-->
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Restaurants</h3>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									{% for marker in restoMarkers %}
+										{% for resto in  restos%}
+											{% if marker.name == resto.nom %}
+												<div id={{marker.name}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset(resto.imgPath)}}" alt="">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<a href="#">(20 Review)</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+										{% endfor%}
+									</div>
+								</div>
+							</div>
+							<!-- end Restaurants-->
+
+							<!-- start activite-->
+							<div class="popular_places_area">
+								<div class="container">
+									<div class="row justify-content-center">
+										<div class="col-lg-6">
+											<div class="section_title text-center mb_70">
+												<h3>Activités</h3>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										{% for marker in activiteMarkers %}
+											{% for activite in  activites %}
+												{% if marker.name == activite.nom %}
+													<div id={{marker.name}} class="col-lg-4 col-md-6">
+														<div class="single_place">
+															<div class="thumb">
+																<img style="width: 400px; height: 425px;" src="{{asset(activite.imgPath)}}" alt="">
+															</div>
+															<div class="place_info">
+																<a href="destination_details.html">
+																	<h3>{{marker.name}}</h3>
+																</a>
+																<div class="rating_days d-flex justify-content-between">
+																	<span class="d-flex justify-content-center align-items-center">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<a href="#">(20 Review)</a>
+																	</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												{% endif %}
+											{% endfor %}
+											{% endfor%}
+										</div>
+									</div>
+								</div>
+								<!-- end Restaurants-->
+
+
+								<div class="popular_places_area">
+									<div class="container">
+										<div class="row justify-content-center">
+											<div class="col-lg-6">
+												<div class="section_title text-center mb_70">
+													<h3>Campings</h3>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											{% for marker in campingMarkers %}
+												{% for camping in  campings %}
+													{% if marker.name == camping.nom %}
+														<div id={{marker.name}} class="col-lg-4 col-md-6">
+															<div class="single_place">
+																<div class="thumb">
+																	<img style="width: 400px; height: 425px;" src="{{asset(camping.imgPath)}}" alt="">
+																</div>
+																<div class="place_info">
+																	<a href="destination_details.html">
+																		<h3>{{marker.name}}</h3>
+																	</a>
+																	<div class="rating_days d-flex justify-content-between">
+																		<span class="d-flex justify-content-center align-items-center">
+																			<i class="fa fa-star"></i>
+																			<i class="fa fa-star"></i>
+																			<i class="fa fa-star"></i>
+																			<i class="fa fa-star"></i>
+																			<i class="fa fa-star"></i>
+																			<a href="#">(20 Review)</a>
+																		</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													{% endif %}
+												{% endfor %}
+												{% endfor%}
+											</div>
+										</div>
+									</div>
+
+									<!-- end comntaire-->
+
+									<div id="cmnt" class="destination_details_info">
+										<div class="container">
+											<div class="section_title text-center mb_70">
+												<h3>Comentaires</h3>
+											</div>
+											<div class="row justify-content-center">
+												<div class="col-lg-8 col-md-9">
+													<div class="destination_info">
+														<h4>EL ouadi Abdelati</h4>
+														<p>Uarzazate ou Ouarzazate (dérivé du français, et de l'arabe, ورزازات, Warzāzāt),
+																																																												                            également connu sous le nom de La porte du désert, est une ville du sud du Maroc.
+																																																												                            Uarzazate est la capitale de la province du même nom, qui fait partie de la région de
+																																																												                            Sus-Masa-Draa.
+																																																												                            Il est fréquenté par le tourisme en raison de sa proximité avec les montagnes de l'Atlas et
+																																																												                            la vallée du Draa,
+																																																												                            dont le nom vient d'une expression berbère signifiant "sans bruit" ou "sans confusion".
+														</p>
+														<p>
+															Quant à Taourit, qui est le nom de sa kashba ou citadelle,
+																																																												                            elle fait référence au berbère régional auquel elle se dresse sur un monticule.</p>
+													</div>
+													<div id="Ali" class="bordered_1px"></div>
+													<h4>KHYATTI ALi</h4>
+													<p>Ouarzazate (berbère: z z Warzazat, arabe: ورزازات, littéralement «sans bruit»),
+																																																								                        surnommée La porte du désert, est une ville et capitale de la province de Ouarzazate dans le
+																																																								                        Souss-Massa-Drâa du centre-sud du Maroc.
+																																																								                        Ouarzazate est à une altitude de 1160 mètres au milieu d'un plateau nu au sud des montagnes du
+																																																								                        Haut Atlas.
+																																																								                        Au sud de la ville se trouve le désert.</p>
+												</div>
+											</div>
+
+											<div class="bordered_1px"></div>
+											<div class="contact_join ">
+												<h3>Ajouter comentaire</h3>
+												<form action="#">
+													<div class="row">
+														<div class="col-lg-6 col-md-6">
+
+															<div class="col-lg-12">
+																<div class="single_input">
+																	<textarea name="" id="" cols="30" rows="10" placeholder="comentaire"></textarea>
+																</div>
+															</div>
+															<div class="col-lg-12">
+																<div class="submit_btn">
+																	<button class="boxed-btn4" type="submit">Envoyer</button>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<!-- end comntaire-->
+
+								{% endblock %}

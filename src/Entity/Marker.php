@@ -26,7 +26,7 @@ class Marker
     /**
      * @ORM\ManyToOne(targetEntity="Ville", inversedBy="markers")
      * @ORM\JoinColumn(name="ville_id", referencedColumnName="id", onDelete="CASCADE")
-     */ 
+     */
     private $ville;
 
     /**
@@ -114,13 +114,13 @@ class Marker
         return $this;
     }
 
-   /**
-    * toString
-    * @return string
-    */
+    /**
+     * toString
+     * @return string
+     */
     public function __toString()
     {
-            return $this->getName();
+        return $this->getName();
     }
 
     public function getVille(): ?ville
