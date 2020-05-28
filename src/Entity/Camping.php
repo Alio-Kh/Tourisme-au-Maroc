@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CampingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Ville;
 
 /**
  * @ORM\Entity(repositoryClass=CampingRepository::class)
@@ -17,10 +18,10 @@ class Camping
      */
     private $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Marker::class)
-     */
-    private $marker;
+    // /**
+    //  * @ORM\OneToOne(targetEntity=Marker::class)
+    //  */
+    // private $marker;
 
     /**
      * @ORM\Column(type="string", length=60)
@@ -36,6 +37,11 @@ class Camping
      * @ORM\Column(type="string", length=80)
      */
     private $nom;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="campings")
+     */
+    private $ville;
 
     public function getId(): ?int
     {
@@ -66,17 +72,17 @@ class Camping
         return $this;
     }
 
-    public function getMarker(): ?Marker
-    {
-        return $this->marker;
-    }
+    // public function getMarker(): ?Marker
+    // {
+    //     return $this->marker;
+    // }
 
-    public function setMarker(?Marker $marker): self
-    {
-        $this->marker = $marker;
+    // public function setMarker(?Marker $marker): self
+    // {
+    //     $this->marker = $marker;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getNom(): ?string
     {
@@ -86,6 +92,18 @@ class Camping
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

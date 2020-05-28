@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
-use App\Form\Activite1Type;
+use App\Form\Activite2Type;
 use App\Repository\ActiviteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class ActiviteController extends AbstractController
     public function new(Request $request): Response
     {
         $activite = new Activite();
-        $form = $this->createForm(Activite1Type::class, $activite);
+        $form = $this->createForm(Activite2Type::class, $activite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class ActiviteController extends AbstractController
      */
     public function edit(Request $request, Activite $activite): Response
     {
-        $form = $this->createForm(Activite1Type::class, $activite);
+        $form = $this->createForm(Activite2Type::class, $activite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

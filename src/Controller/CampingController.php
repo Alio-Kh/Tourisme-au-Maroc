@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Camping;
-use App\Form\Camping1Type;
+use App\Form\Camping2Type;
 use App\Repository\CampingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class CampingController extends AbstractController
     public function new(Request $request): Response
     {
         $camping = new Camping();
-        $form = $this->createForm(Camping1Type::class, $camping);
+        $form = $this->createForm(Camping2Type::class, $camping);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class CampingController extends AbstractController
      */
     public function edit(Request $request, Camping $camping): Response
     {
-        $form = $this->createForm(Camping1Type::class, $camping);
+        $form = $this->createForm(Camping2Type::class, $camping);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

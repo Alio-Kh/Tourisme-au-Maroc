@@ -6,7 +6,7 @@
 
     <div class="destination_banner_wrap overlay">
         <div class="destination_text text-center">
-            <h3>ouarzazate</h3>
+            <h3>{{ville.name}}</h3>
         </div>
     </div>
     <!-- start description-->
@@ -53,36 +53,76 @@
         </div>
     </div>
     
- {% for marker in markers %}
-
-
- {% endfor%}
 
     <!-- start map-->
     <div class="container">
         <div class="d-none d-sm-block mb-5 pb-4">
             <div id="map" style="height: 480px; position: relative;"> </div>
+
             <script>
-                var markersSet = [];
+                var hotelMarkers = [];
+                var campingMarkers = [];
+                var restoMarkers = [];
+                var activiteMarkers = [];
             </script>
-           {% for marker in markers %}
+
+           {% for hotelMarker in hotelMarkers %}
                 <script>                        
-                            var marker = { 
-                                position: {
-                                    lat: {{marker.lat}},
-                                    lng: {{marker.lng}}
-                                },
-                                title: "{{marker.name}}"
-                            };
-                            markersSet.push(marker);
-                                               
+                    var hotelMarker = { 
+                        position: {
+                            lat: {{hotelMarker.lat}},
+                            lng: {{hotelMarker.lng}}
+                        },
+                        title: "{{ hotelMarker.name}}"
+                    };
+                    hotelMarkers.push(hotelMarker);
                 </script>
-                {% endfor%}
+            {% endfor%}
+
+             {% for campingMarker in campingMarkers %}
+                <script>                        
+                    var campingMarker = { 
+                        position: {
+                            lat: {{campingMarker.lat}},
+                            lng: {{campingMarker.lng}}
+                        },
+                        title: "{{campingMarker.name}}"
+                    };
+                    campingMarkers.push(campingMarker);                         
+                </script>
+            {% endfor%}
+
+             {% for activiteMarker in activiteMarkers %}
+                <script>                        
+                    var activiteMarker = { 
+                        position: {
+                            lat: {{activiteMarker.lat}},
+                            lng: {{activiteMarker.lng}}
+                        },
+                        title: "{{activiteMarker.name}}"
+                    };
+                    activiteMarkers.push(activiteMarker);                     
+                </script>
+            {% endfor%}
+
+             {% for restoMarker in restoMarkers %}
+                <script>                        
+                    var restoMarker = { 
+                        position: {
+                            lat: {{ restoMarker.lat}},
+                            lng: {{ restoMarker.lng}}
+                        },
+                        title: "{{restoMarker.name}}"
+                    };
+                    restoMarkers.push(restoMarker);                    
+                </script>
+            {% endfor%} 
+
                 <script>
                 function initMap() {
                     var uluru = {
-                        lat: 30.916663,
-                        lng: -6.916663
+                        lat: {{ villeMarker.lat}},
+                        lng: {{villeMarker.lng}}
                     };
 
                     var map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: uluru, scrollwheel: true, /*mapTypeId: 'satellite'*/mapTypeId: google.maps.MapTypeId.ROADMAP });
@@ -96,14 +136,44 @@
                     });
 
                     var markers = [];
-                    for (let i = 0; i < markersSet.length; i++) {
-                        var m = new google.maps.Marker({
-                            position: markersSet[i].position,
+                    for (let i = 0; i < hotelMarkers.length; i++) {
+                        var mh = new google.maps.Marker({
+                            position: hotelMarkers[i].position,
                             map: map
                         });
-                        m.setTitle(markersSet[i].title);
+                        mh.setTitle(hotelMarkers[i].title);
                        
-                        markers.push(m);
+                        markers.push(mh);
+                    } 
+
+                    for (let i = 0; i < restoMarkers.length; i++) {
+                        var mr = new google.maps.Marker({
+                            position: restoMarkers[i].position,
+                            map: map
+                        });
+                        mr.setTitle(restoMarkers[i].title);
+                       
+                        markers.push(mr);
+                    } 
+
+                    for (let i = 0; i < campingMarkers.length; i++) {
+                        var mc = new google.maps.Marker({
+                            position: campingMarkers[i].position,
+                            map: map
+                        });
+                        mc.setTitle(campingMarkers[i].title);
+                       
+                        markers.push(mc);
+                    } 
+
+                    for (let i = 0; i < activiteMarkers.length; i++) {
+                        var ma = new google.maps.Marker({
+                            position: activiteMarkers[i].position,
+                            map: map
+                        });
+                        ma.setTitle(activiteMarkers[i].title);
+                       
+                        markers.push(ma);
                     } 
  
                     var infowindow = new google.maps.InfoWindow();
@@ -132,6 +202,7 @@
     <!-- end description-->
 
     <!-- start hotels-->
+    {% if hotels is not empty %}
     <div class="popular_places_area">
         <div class="container">
             <div class="row justify-content-center">
@@ -142,10 +213,10 @@
                 </div>
             </div>
             <div class="row">
-                {% for marker in markers %}
-                    {% for hotel in  hotels%}
+                {% for marker in hotelMarkers %}
+                    {% for hotel in  hotels %}
                         {% if marker.name == hotel.nom %}
-                            <div id={{marker.name}} class="col-lg-4 col-md-6">
+                            <div id="{{marker.name}}" class="col-lg-4 col-md-6">
                                 <div class="single_place">
                                     <div class="thumb">
                                         <img src="{{asset(hotel.imgPath)}}" alt="">
@@ -170,13 +241,15 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                {% endfor%}
+                {% endfor %}
             </div>
         </div>
     </div>
+    {% endif %}
     <!-- end hotels-->
-
+{
     <!-- start Restaurants-->
+      {% if restos is not empty %}
     <div class="popular_places_area">
         <div class="container">
             <div class="row justify-content-center">
@@ -187,10 +260,10 @@
                 </div>
             </div>
             <div class="row">
-                {% for marker in markers %}
-                        {% for resto in  restos%}
+                {% for marker in restoMarkers %}
+                        {% for resto in  restos %}
                             {% if marker.name == resto.nom %}
-                                <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                <div id="{{marker.name}}" class="col-lg-4 col-md-6">
                                     <div class="single_place">
                                         <div class="thumb">
                                             <img style="width: 400px; height: 425px;" src="{{asset(resto.imgPath)}}" alt="">
@@ -214,13 +287,15 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                    {% endfor%}
+                    {% endfor %}
                  </div>
         </div>
     </div>
+     {% endif %}
     <!-- end Restaurants-->
 
     <!-- start activite-->
+    {% if activites is not empty  %}
     <div class="popular_places_area">
         <div class="container">
             <div class="row justify-content-center">
@@ -231,10 +306,10 @@
                 </div>
             </div>
             <div class="row">
-             {% for marker in markers %}
+             {% for marker in activiteMarkers %}
                         {% for activite in  activites %}
                             {% if marker.name == activite.nom %}
-                                <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                <div id="{{marker.name}}" class="col-lg-4 col-md-6">
                                     <div class="single_place">
                                         <div class="thumb">
                                             <img style="width: 400px; height: 425px;" src="{{asset(activite.imgPath)}}" alt="">
@@ -258,13 +333,14 @@
                                 </div>
                         {% endif %}
                     {% endfor %}
-                {% endfor%}
+                {% endfor %}
             </div>
         </div>
     </div>
+    {% endif %}
     <!-- end Restaurants-->
 
-
+    {% if campings is not empty %}
     <div class="popular_places_area">
         <div class="container">
             <div class="row justify-content-center">
@@ -275,10 +351,10 @@
                 </div>
             </div>
             <div class="row">
-             {% for marker in markers %}
+             {% for marker in campingMarkers %}
                     {% for camping in  campings %}
                             {% if marker.name == camping.nom %}
-                                <div id={{marker.name}} class="col-lg-4 col-md-6">
+                                <div id="{{marker.name}}" class="col-lg-4 col-md-6">
                                     <div class="single_place">
                                         <div class="thumb">
                                             <img style="width: 400px; height: 425px;" src="{{asset(camping.imgPath)}}" alt="">
@@ -302,11 +378,11 @@
                                 </div>
                         {% endif %}
                     {% endfor %}
-                {% endfor%}
+                {% endfor %}
             </div>
         </div>
     </div>
-
+   {% endif %}
     <!-- end comntaire-->
 
     <div id="cmnt" class="destination_details_info">

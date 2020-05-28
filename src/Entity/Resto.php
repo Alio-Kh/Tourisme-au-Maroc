@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RestoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Ville;
 
 /**
  * @ORM\Entity(repositoryClass=RestoRepository::class)
@@ -17,10 +18,10 @@ class Resto
      */
     private $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Marker::class)
-     */
-    private $marker;
+    // /**
+    //  * @ORM\OneToOne(targetEntity=Marker::class)
+    //  */
+    // private $marker;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -36,6 +37,11 @@ class Resto
      * @ORM\Column(type="string", length=255)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="restos")
+     */
+    private $ville;
 
     public function getId(): ?int
     {
@@ -54,17 +60,17 @@ class Resto
         return $this;
     }
 
-    public function getMarker(): ?Marker
-    {
-        return $this->marker;
-    }
+    // public function getMarker(): ?Marker
+    // {
+    //     return $this->marker;
+    // }
 
-    public function setMarker(?Marker $marker): self
-    {
-        $this->marker = $marker;
+    // public function setMarker(?Marker $marker): self
+    // {
+    //     $this->marker = $marker;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getNom(): ?string
     {
@@ -86,6 +92,18 @@ class Resto
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MarkerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Ville;
 
 /**
  * @ORM\Entity(repositoryClass=MarkerRepository::class)
@@ -22,10 +23,11 @@ class Marker
      */
     private $name;
 
-    // /**
-    //  * @ORM\OneToOne(targetEntity="hotel", inversedBy="marker")
-    //  */
-    // private $hotel;
+    /**
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="markers")
+     * @ORM\JoinColumn(name="ville_id", referencedColumnName="id", onDelete="CASCADE")
+     */ 
+    private $ville;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -119,5 +121,17 @@ class Marker
     public function __toString()
     {
             return $this->getName();
+    }
+
+    public function getVille(): ?ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?ville $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
     }
 }

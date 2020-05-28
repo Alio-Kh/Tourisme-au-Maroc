@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\HotelRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Ville;
 
 /**
  * @ORM\Entity(repositoryClass=HotelRepository::class)
@@ -27,10 +28,16 @@ class Hotel
      */
     private $imgPath;
 
+    // /**
+    //  * @ORM\OneToOne(targetEntity=Marker::class)
+    //  */
+    // private $marker;
+
     /**
-     * @ORM\OneToOne(targetEntity=Marker::class)
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="hotels")
+     * @ORM\JoinColumn(name="ville_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $marker;
+    private $ville;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -66,26 +73,17 @@ class Hotel
         return $this;
     }
 
-    public function getMarker(): ?Marker
-    {
-        return $this->marker;
-    }
+    // public function getMarker(): ?Marker
+    // {
+    //     return $this->marker;
+    // }
 
-    public function setMarker(?Marker $marker): self
-    {
-        $this->marker = $marker;
+    // public function setMarker(?Marker $marker): self
+    // {
+    //     $this->marker = $marker;
 
-        return $this;
-    }
-
-//     /**
-//     * toString
-//     * @return string
-//     */
-//    public function __toString()
-//    {
-//            return $this->getMarker();
-//    }
+    //     return $this;
+    // }
 
 
 public function getDescription(): ?string
@@ -96,6 +94,18 @@ public function getDescription(): ?string
 public function setDescription(string $description): self
 {
     $this->description = $description;
+
+    return $this;
+}
+
+public function getVille(): ?Ville
+{
+    return $this->ville;
+}
+
+public function setVille(?Ville $ville): self
+{
+    $this->ville = $ville;
 
     return $this;
 }}
