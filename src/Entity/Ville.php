@@ -6,6 +6,8 @@ use App\Repository\VilleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use EasyCorp\Bundle\EasyAdminBundle\Mapping\Annotation as EA;
+
 
 /**
  * @ORM\Entity(repositoryClass=VilleRepository::class)
@@ -19,7 +21,7 @@ class Ville
      */
     private $id;
 
-     /**
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -71,10 +73,12 @@ class Ville
     {
         return $this->id;
     }
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
-    public function getImage(){
+    public function getImage()
+    {
         return $this->image;
     }
 
@@ -217,13 +221,13 @@ class Ville
     }
 
 
-   /**
-    * toString
-    * @return string
-    */
+    /**
+     * toString
+     * @return string
+     */
     public function __toString()
     {
-            return $this->getName();
+        return $this->getName();
     }
 
     public function getRegion(): ?Region
@@ -237,6 +241,4 @@ class Ville
 
         return $this;
     }
-
-
 }

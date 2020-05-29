@@ -86,26 +86,36 @@ class Hotel
     // }
 
 
-public function getDescription(): ?string
-{
-    return $this->description;
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
-
-public function setDescription(string $description): self
-{
-    $this->description = $description;
-
-    return $this;
-}
-
-public function getVille(): ?Ville
-{
-    return $this->ville;
-}
-
-public function setVille(?Ville $ville): self
-{
-    $this->ville = $ville;
-
-    return $this;
-}}

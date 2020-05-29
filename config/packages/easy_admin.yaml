@@ -1,0 +1,97 @@
+easy_admin:
+  site_name: "Morocco <strong>Traveling</strong>"
+  design:
+    menu:
+      - { label: "Entities" }
+      - label: "Ville"
+        icon: "city"
+        children:
+          - { entity: Ville, label: "listes des villes", icon: "th-list" }
+          - {
+              entity: Ville,
+              label: "Ajouter une villes",
+              icon: "plus",
+              params: { action: "new" },
+            }
+
+      - label: "Hotel"
+        icon: "hotel"
+        children:
+          - { entity: Hotel, label: "listes des Hotels", icon: "th-list" }
+          - {
+              entity: Hotel,
+              label: "Ajouter un Hotel",
+              icon: "plus",
+              params: { action: "new" },
+            }
+
+      - label: "Restaurant"
+        # icon: "knife"
+        children:
+          - { entity: Resto, label: "listes des Restaurants", icon: "th-list" }
+          - {
+              entity: Resto,
+              label: "Ajouter un Restaurant",
+              icon: "plus",
+              params: { action: "new" },
+            }
+
+      - label: "Activité"
+        # icon: "activity"
+        children:
+          - { entity: Activite, label: "listes des Activités", icon: "th-list" }
+          - {
+              entity: Activite,
+              label: "Ajouter une Activité",
+              icon: "plus",
+              params: { action: "new" },
+            }
+
+      - label: "Camping"
+        icon: "caravan"
+        children:
+          - { entity: Camping, label: "listes des Campings", icon: "th-list" }
+          - {
+              entity: Camping,
+              label: "Ajouter un Camping",
+              icon: "plus",
+              params: { action: "new" },
+            }
+      - { label: "Manager" }
+      - { entity: User, label: "Users", icon: "user" }
+
+  user:
+    display_name: true
+    name_property_path: "fullName"
+  entities:
+    # List the entity class name you want to manage
+    Ville:
+      class: App\Entity\Ville
+      label: "Ville"
+      form:
+        fields:
+          - {type: "group", icon: "pencil", label: "Villes", css_class: "col-lg-7"}
+          - name
+
+    Hotel:
+      class: App\Entity\Hotel
+      label: "Hotel"
+      form:
+        fields:
+          - { type: "group", icon: "pencil", label: "Hotels" }
+
+    Activite:
+      class: App\Entity\Activite
+      label: "Activite"
+
+    Resto:
+      class: App\Entity\Resto
+      label: "Restaurant"
+
+    User:
+      class: App\Entity\User
+      label: "user"
+
+    Camping:
+      class: App\Entity\Camping
+      label: "camp"
