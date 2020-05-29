@@ -31,6 +31,7 @@ class DestinationDetailsController extends AbstractController
         $activites = $activiteRepository->findBy(array('ville' => $ville));
         $campings = $campingRepository->findBy(array('ville' => $ville));
         $villeMarker = $markerRepository->findOneBy(array('type' => 'ville', 'ville' => $ville));
+  //      dd($activites);
         return $this->render('destination_details/index.html.twig', [
             'controller_name' => 'DestinationDetailsController', 'villeMarker' => $villeMarker, 'ville' => $ville,
              'hotelMarkers' => $hotelMarkers, 'hotels' => $hotels, 'restos' => $restos, 'activites' => $activites, 'campings' => $campings,
