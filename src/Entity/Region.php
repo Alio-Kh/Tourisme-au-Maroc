@@ -32,6 +32,7 @@ class Region
     public function __construct()
     {
         $this->villes = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -58,7 +59,8 @@ class Region
     {
         return $this->villes;
     }
-
+     
+   
     public function addVille(Ville $ville): self
     {
         if (!$this->villes->contains($ville)) {

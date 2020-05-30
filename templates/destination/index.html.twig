@@ -1,121 +1,151 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DestinationController!{% endblock %}
+{% block title %}Hello DestinationController!
+{% endblock %}
 
 {% block body %}
-   <!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text text-center">
-                        <h3>Destinations</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ bradcam_area  -->
+	<!-- bradcam_area  -->
+	<div class="bradcam_area bradcam_bg_2">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="bradcam_text text-center">
+						<h3>Destinations</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ bradcam_area  -->
+        <script>
+             var nameVilles=[];
+		  </script>
+	  {% for ville in villes %}
+	    <script>
+              nameVilles.push("{{ ville.name }}");
+		 </script>
+		{% endfor %}
+
+	<div class="popular_places_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="filter_result_wrap">
+						<h3>Filter de résultats</h3>
+                     <form   class="chatAjaxForm" action="{{path('destination_filter')}}" method="post" >
+						<div class="filter_bordered">
+							<div class="filter_inner">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<select id="region" name="idRegion" class="form-control">
+												<option value="0"  selected>toutes les Régions</option>
+												{% for region in regions %}
+													<option value="{{region.id}}">{{region.nom}}</option>
+												{% endfor %}
+											</select>
+										</div>
+
+									</div>
+
+									<div class="col-lg-12">
+										<div class="form-group">
+											<select class="form-control">
+												<option data-display="Type voyage">Type voyage</option>
+												<option value="1">Trip</option>
+												<option value="2">Famille</option>
+												<option value="4">Aventure</option>
+												<option value="4">Séjour</option>
+												<option value="4">Randonnée</option>
+											</select>
+										</div>
+									</div>
+								</div>
 
 
+							</div>
 
+							<div class="reset_btn">
+								<button class="boxed-btn4" type="submit">Réinitialiser</button>
+								<p id="ana"></p>
+							</div>
+						 </div>
+                        </form>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="row">
+				      	
+						{% for ville in villes %}
+							<div id="{{ville.name}}" class="col-lg-6 col-md-6">
+								<div class="single_place">
+									<div class="thumb">
+										<img src="{{asset(ville.image)}}" alt="">
 
-    <div class="popular_places_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="filter_result_wrap">
-                        <h3>Filter de résultats</h3>
-                        <div class="filter_bordered">
-                            <div class="filter_inner">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="single_select">
-                                            <select>
-                                                <option data-display="Région">Région</option>
-                                                <option value="1">l'Oriental</option>
-                                                <option value="2">Tanger-Tétouan-Al Hoceïma</option>
-                                                <option value="3">Fès-Meknès</option>
-                                                <option value="4">Rabat-Salé-Kénitra</option>
-                                                <option value="5">Béni Mellal-Khénifra</option>
-                                                <option value="6">Casablanca-Settat</option>
-                                                <option value="1">Souss-Massa</option>
-                                                <option value="1">Dakhla-Oued Ed Dahab</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single_select">
-                                            <select>
-                                                <option data-display="Ville">Ville</option>
-                                                <option value="1">Casablanca</option>
-                                                <option value="2">Rabat</option>
-                                                <option value="3">Marrakech</option>
-                                                <option value="4">Ouarzazate</option>
-                                                <option value="5">Azilal</option>
-                                                <option value="6">Aït Bouguemez</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single_select">
-                                            <select>
-                                                <option data-display="Type voyage">Type voyage</option>
-                                                <option value="1">Trip</option>
-                                                <option value="2">Famille</option>
-                                                <option value="4">Aventure</option>
-                                                <option value="4">Séjour</option>
-                                                <option value="4">Randonnée</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+									</div>
+									<div class="place_info">
+										<a href="{{ path('destination_details', {'name': ville.name}) }}">
+											<h3>{{ville.name | replace({'_': " "})}}</h3>
+										</a>
+										{# <p>{{ville.region.nom}}</p> #}
+										<div class="rating_days d-flex justify-content-between">
+											<span class="d-flex justify-content-center align-items-center">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<a href="#">(20 Review)</a>
+											</span>
 
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+        
+	{% endblock %}
+	{% block javascripts %}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	   <script>
+      (function (){
+		  
+        	 document.querySelector('.chatAjaxForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+	     	axios.post($(".chatAjaxForm").attr('action'),{
+                     idResion:$('#region').val()
+               })
+                .then(function (response) {
+                        const villes=response.data.villes;
+					    const newName=[];
+  				        for(var i = 0; i < villes.length; i++) {   
+							   newName.push(villes[i]["name"]);
+                           }
+					 	for(var i=0;i<nameVilles.length;i++){
+							  if(nameVilles.includes(nameVilles[i]) && newName.includes(nameVilles[i])){
+						              $('#'+nameVilles[i]).show();
+								      console.log("show "+ nameVilles[i] );
+								} else {
+						                $('#'+nameVilles[i]).hide();
+								        console.log("hide "+ nameVilles[i] );
+								}
+						}
+				  
+				})
+				.catch(function (error) {
+						console.log(error);
+				});
+								
+            	 });
+		})();
 
-                            </div>
-
-                            <div class="reset_btn">
-                                <button class="boxed-btn4" type="submit">Réinitialiser</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="row">
-
-
-
-                {% for ville in villes %}
-                         <div class="col-lg-6 col-md-6">
-                            <div class="single_place">
-                                <div class="thumb">
-                                    <img src="{{asset(ville.image)}}" alt="">
-
-                                </div>
-                                <div class="place_info">
-                                    <a href="{{ path('destination_details', {'name': ville.name}) }}">
-                                        <h3>{{ville.name}}</h3>
-                                    </a>
-                                    {# <p>{{ville.region.nom}}</p> #}
-                                    <div class="rating_days d-flex justify-content-between">
-                                        <span class="d-flex justify-content-center align-items-center">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <a href="#">(20 Review)</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor%}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
- 
-{% endblock %}
+     
+		</script>
+		
+	{% endblock %}
