@@ -23,10 +23,6 @@ class Camping
     //  */
     // private $marker;
 
-    /**
-     * @ORM\Column(type="string", length=60)
-     */
-    private $type;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -43,21 +39,19 @@ class Camping
      */
     private $ville;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFree;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     public function getImgPath(): ?string
@@ -71,18 +65,6 @@ class Camping
 
         return $this;
     }
-
-    // public function getMarker(): ?Marker
-    // {
-    //     return $this->marker;
-    // }
-
-    // public function setMarker(?Marker $marker): self
-    // {
-    //     $this->marker = $marker;
-
-    //     return $this;
-    // }
 
     public function getNom(): ?string
     {
@@ -115,5 +97,29 @@ class Camping
     public function __toString()
     {
         return $this->getNom();
+    }
+
+    public function getIsFree(): ?bool
+    {
+        return $this->isFree;
+    }
+
+    public function setIsFree(bool $isFree): self
+    {
+        $this->isFree = $isFree;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

@@ -34,6 +34,26 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=30, unique=true)
+     */
+    private $userName;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $tel;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,5 +139,48 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getEmail();
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function setUserName(string $userName): self
+    {
+        $this->userName = $userName;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(?string $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
     }
 }
