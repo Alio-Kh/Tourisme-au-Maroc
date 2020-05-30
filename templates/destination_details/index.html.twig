@@ -407,8 +407,8 @@ m.setVisible(false);
 									<div class="row">
 										{% for marker in hotelMarkers %}
 											{% for hotel in  hotels%}
-												{% if marker.name == hotel.nom %}
-													<div id={{marker.name}} class="col-lg-4 col-md-6">
+												{% if marker.name | replace({' ': '_'}) == hotel.nom | replace({' ': '_'}) %}
+													<div id={{marker.name | replace({' ': '_'})}} class="col-lg-4 col-md-6">
 														<div class="single_place">
 															<div class="thumb">
 																<img src="{{asset(hotel.imgPath)}}" alt="">
@@ -433,7 +433,7 @@ m.setVisible(false);
 													</div>
 												{% endif %}
 											{% endfor %}
-											{% endfor%}
+										{% endfor %}
 										</div>
 									</div>
 								</div>
@@ -454,8 +454,8 @@ m.setVisible(false);
 										<div class="row">
 											{% for marker in restoMarkers %}
 												{% for resto in  restos%}
-													{% if marker.name == resto.nom %}
-														<div id={{marker.name}} class="col-lg-4 col-md-6">
+													{% if marker.name | replace({' ': '_'}) == resto.nom | replace({' ': '_'}) %}
+														<div id={{marker.name| replace({' ': '_'})}} class="col-lg-4 col-md-6">
 															<div class="single_place">
 																<div class="thumb">
 																	<img style="width: 400px; height: 425px;" src="{{asset(resto.imgPath)}}" alt="">
@@ -479,7 +479,7 @@ m.setVisible(false);
 														</div>
 													{% endif %}
 												{% endfor %}
-												{% endfor%}
+											{% endfor %}
 											</div>
 										</div>
 									</div>
@@ -500,8 +500,8 @@ m.setVisible(false);
 											<div class="row">
 												{% for marker in activiteMarkers %}
 													{% for activite in  activites %}
-														{% if marker.name == activite.nom %}
-															<div id={{marker.name}} class="col-lg-4 col-md-6">
+														{% if marker.name | replace({' ': '_'}) == activite.nom | replace({' ': '_'}) %}
+															<div id={{marker.name| replace({' ': '_'})}} class="col-lg-4 col-md-6">
 																<div class="single_place">
 																	<div class="thumb">
 																		<img style="width: 400px; height: 425px;" src="{{asset(activite.imgPath)}}" alt="">
@@ -525,7 +525,7 @@ m.setVisible(false);
 															</div>
 														{% endif %}
 													{% endfor %}
-													{% endfor%}
+												{% endfor %}
 												</div>
 											</div>
 										</div>
@@ -546,8 +546,8 @@ m.setVisible(false);
 												<div class="row">
 													{% for marker in campingMarkers %}
 														{% for camping in  campings %}
-															{% if marker.name == camping.nom %}
-																<div id={{marker.name}} class="col-lg-4 col-md-6">
+															{% if marker.name | replace({' ': '_'}) == camping.nom | replace({' ': '_'}) %}
+																<div id={{marker.name| replace({' ': '_'})}} class="col-lg-4 col-md-6">
 																	<div class="single_place">
 																		<div class="thumb">
 																			<img style="width: 400px; height: 425px;" src="{{asset(camping.imgPath)}}" alt="">
@@ -571,7 +571,7 @@ m.setVisible(false);
 																</div>
 															{% endif %}
 														{% endfor %}
-														{% endfor%}
+													{% endfor %}
 													</div>
 												</div>
 											</div>
