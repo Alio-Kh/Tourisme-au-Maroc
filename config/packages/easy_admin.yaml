@@ -8,15 +8,25 @@ easy_admin:
         icon: "city"
         children:
           - { entity: Ville, label: "listes des villes", icon: "th-list" }
-          - { entity: Ville, label: "Ajouter une ville", icon: "plus", params: { action: "new" }}
+          - {
+              entity: Ville,
+              label: "Ajouter une ville",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Ville, label: "Éditer une ville", icon: "pencil", params: { action: "edit" }}
           # - { entity: Ville, label: "Supprimer une ville", icon: "trash", params: { action: "delete" }}
-      
+
       - label: "Région"
         icon: "map"
         children:
           - { entity: Region, label: "listes des Régions", icon: "th-list" }
-          - { entity: Region, label: "Ajouter une Région", icon: "plus", params: { action: "new" }}
+          - {
+              entity: Region,
+              label: "Ajouter une Région",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Region, label: "Éditer une Région", icon: "pencil", params: { action: "edit" }}
           # - { entity: Region, label: "Supprimer une Région", icon: "trash", params: { action: "delete" }}
 
@@ -24,7 +34,12 @@ easy_admin:
         icon: "hotel"
         children:
           - { entity: Hotel, label: "listes des Hotels", icon: "th-list" }
-          - { entity: Hotel, label: "Ajouter un Hotel", icon: "plus", params: { action: "new" }}
+          - {
+              entity: Hotel,
+              label: "Ajouter un Hotel",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Hotel, label: "Éditer un Hotel", icon: "pencil", params: { action: "edit" }}
           # - { entity: Hotel, label: "Supprimer un Hotel", icon: "trash", params: { action: "delete" }}
 
@@ -32,7 +47,12 @@ easy_admin:
         icon: "coffee"
         children:
           - { entity: Resto, label: "listes des Restaurants", icon: "th-list" }
-          - { entity: Resto, label: "Ajouter un Restaurant", icon: "plus", params: { action: "new" },}
+          - {
+              entity: Resto,
+              label: "Ajouter un Restaurant",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Resto, label: "Éditer un Restaurant", icon: "pencil", params: { action: "edit" }}
           # - { entity: Resto, label: "Supprimer un Restau", icon: "trash", params: { action: "delete" }}
 
@@ -40,46 +60,73 @@ easy_admin:
         icon: "image"
         children:
           - { entity: Activite, label: "listes des Activités", icon: "th-list" }
-          - { entity: Activite, label: "Ajouter une Activité", icon: "plus", params: { action: "new" }}
+          - {
+              entity: Activite,
+              label: "Ajouter une Activité",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Activite, label: "Éditer une Activité", icon: "pencil", params: { action: "edit" }}
           # - { entity: Activite, label: "Supprimer une Activité", icon: "trash", params: { action: "delete" }}
-      
 
       - label: "Camping"
         icon: "caravan"
         children:
           - { entity: Camping, label: "listes des Campings", icon: "th-list" }
-          - { entity: Camping, label: "Ajouter un Camping", icon: "plus", params: { action: "new" }}
+          - {
+              entity: Camping,
+              label: "Ajouter un Camping",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Camping, label: "Éditer un Camping", icon: "pencil", params: { action: "edit" }}
           # - { entity: Camping, label: "Supprimer un Camping", icon: "trash", params: { action: "delete" }}
-      
+
       - label: "Marker"
         icon: "map-marker"
         children:
           - { entity: Marker, label: "listes des Marqueurs", icon: "th-list" }
-          - { entity: Marker, label: "Ajouter un Marqueur", icon: "plus", params: { action: "new" }}
+          - {
+              entity: Marker,
+              label: "Ajouter un Marqueur",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Marker, label: "Éditer un Marqueur", icon: "pencil", params: { action: "edit" }}
           # - { entity: Marker, label: "Supprimer un Marqueur", icon: "trash", params: { action: "delete" }}
-      
+
       - label: "Type de voyage"
         icon: "suitcase"
         children:
-          - { entity: TypeVoyage, label: "Les types de voyage", icon: "th-list" }
-          - { entity: TypeVoyage, label: "Ajouter un type de voyage", icon: "plus", params: { action: "new" }}
+          - {
+              entity: TypeVoyage,
+              label: "Les types de voyage",
+              icon: "th-list",
+            }
+          - {
+              entity: TypeVoyage,
+              label: "Ajouter un type de voyage",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: Marker, label: "Éditer un type de voyage", icon: "pencil", params: { action: "edit" }}
           # - { entity: Marker, label: "Supprimer un type de voyage", icon: "trash", params: { action: "delete" }}
-      
+
       - { label: "Sécurité", icon: "lock" }
       - label: "User"
         icon: "user"
         children:
           - { entity: User, label: "listes des Utilisateurs", icon: "th-list" }
-          - { entity: User, label: "Ajouter un Utilisateur", icon: "plus", params: { action: "new" }}
+          - {
+              entity: User,
+              label: "Ajouter un Utilisateur",
+              icon: "plus",
+              params: { action: "new" },
+            }
           # - { entity: User, label: "Éditer un Utilisateur", icon: "pencil", params: { action: "edit" }}
           # - { entity: User, label: "Supprimer un User", icon: "trash", params: { action: "delete" }}
       - label: "Paramétres"
         icon: "config"
-
 
   user:
     display_name: true
@@ -92,26 +139,60 @@ easy_admin:
       class: App\Entity\Ville
       label: "Ville"
       list:
-        collapse_actions: true 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
+        collapse_actions: true
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
         title: "Liste des villes"
-        batch_actions: ['show', 'delete']
-        filters: ['name']
+        batch_actions: ["show", "delete"]
+        filters: ["name"]
+        fields:
+          - name
+          - region
+          - { property: "description", type: "raw" }
+          - {
+              property: "image",
+              label: "Image",
+              type: "image",
+              base_path: "/img/place/",
+            }
       form:
         fields:
           - { type: "group", icon: "city", label: "Ville" }
           - name
-          - "image"
           - region
-          - {property: 'description', type: 'text_editor'}     
+          - { property: "description", type: "text_editor" }
+          - {
+              type: "group",
+              icon: "upload",
+              label: "Uploads",
+              css_class: "col-ls-6",
+            }
+          - { property: "imgPathFile", type: "vich_image", label: "Image" }
       edit:
         title: "Éditer la ville"
         help: "Éditer une ville"
       show:
         help: "Ville"
+        fields:
+          - id
+          - name
+          - region
+          - { property: "description", type: "raw" }
+          - markers
+          - hotels
+          - restos
+          - campings
+          - activites
+          - updatedAt
+          - createdAt
+          - {
+              property: "image",
+              label: "Image",
+              type: "image",
+              base_path: "/img/place/",
+            }
 
     Hotel:
       class: App\Entity\Hotel
@@ -121,25 +202,50 @@ easy_admin:
           - { type: "group", icon: "hotel", label: "Hotel" }
           - nom
           - ville
-          - {property: 'description', type: 'text_editor'}
-          - imgPath
+          - { property: "description", type: "text_editor" }
+          - {
+              type: "group",
+              icon: "upload",
+              label: "Uploads",
+              css_class: "col-ls-6",
+            }
+          - { property: "imgPathFile", type: "vich_image", label: "Image" }
       list:
-        # collapse_actions: false 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['nom', 'ville']
-        batch_actions: ['show', 'delete']
+        # collapse_actions: false
+        fields:
+          - nom
+          - { property: "description", type: "raw" }
+          - ville
+          - {
+              property: "imgPath",
+              label: "Image",
+              type: "image",
+              base_path: "/img/hotel/",
+            }
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["nom", "ville"]
+        batch_actions: ["show", "delete"]
       edit:
         help: "Éditer un hotel"
+      new:
+        help: "Ajouter un hotel"
       show:
         fields:
           - id
           - nom
-          - {property: 'description', type: 'raw'}
+          - { property: "description", type: "raw" }
           - ville
-          - imgPath
+          - createdAt
+          - updatedAt
+          - {
+              property: "imgPath",
+              type: "image",
+              label: "Image",
+              base_path: "/img/hotel/",
+            }
 
     Activite:
       class: App\Entity\Activite
@@ -148,34 +254,52 @@ easy_admin:
         fields:
           - { type: "group", icon: "image", label: "Activité" }
           - nom
-          - {property: 'description', type: 'text_editor'}
+          - { property: "description", type: "text_editor" }
           - ville
           - type
-          - imgPath
+          - {
+              type: "group",
+              icon: "upload",
+              label: "Uploads",
+              css_class: "col-ls-6",
+            }
+          - { property: "imgPathFile", type: "vich_image", label: "Image" }
       edit:
         help: "Éditer une Activité"
       list:
-        # collapse_actions: false 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['nom', 'ville', 'type']
-        batch_actions: ['show', 'edit', 'delete']
+        # collapse_actions: false
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["nom", "ville", "type"]
+        batch_actions: ["show", "edit", "delete"]
         fields:
           - nom
-          - {property: 'description', type: 'text'}
+          - { property: "description", type: "text" }
           - ville
           - type
-          - imgPath
+          - {
+              property: "imgPath",
+              type: "image",
+              label: "Image",
+              base_path: "/img/activite/",
+            }
       show:
         fields:
           - id
           - nom
-          - {property: 'description', type: 'raw'}
+          - { property: "description", type: "raw" }
           - ville
           - type
-          - imgPath
+          - createdAt
+          - updatedAt
+          - {
+              property: "imgPath",
+              type: "image",
+              label: "Image",
+              base_path: "/img/activite/",
+            }
 
     Resto:
       class: App\Entity\Resto
@@ -184,31 +308,103 @@ easy_admin:
         fields:
           - { type: "group", icon: "coffee", label: "Restaurant" }
           - nom
-          - {property: 'description', type: 'text_editor'}
+          - { property: "description", type: "text_editor" }
           - ville
-          - imgPath
+          - {
+              type: "group",
+              icon: "upload",
+              label: "Uploads",
+              css_class: "col-ls-6",
+            }
+          - { property: "imgPathFile", type: "vich_image", label: "Image" }
       edit:
         help: "Éditer un Restaurant"
       list:
-        # collapse_actions: false 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['nom', 'ville']
-        batch_actions: ['show', 'edit', 'delete']
+        # collapse_actions: false
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["nom", "ville"]
+        batch_actions: ["show", "edit", "delete"]
         fields:
           - nom
-          - description
+          - { property: "description", type: "raw" }
           - ville
-          - imgPath
+          - {
+              property: "imgPath",
+              label: "Image",
+              type: "image",
+              base_path: "/img/resto/",
+            }
       show:
         fields:
           - id
           - nom
-          - {property: 'description', type: 'raw'}
+          - { property: "description", type: "raw" }
           - ville
-          - imgPath
+          - createdAt
+          - updatedAt
+          - {
+              property: "imgPath",
+              type: "image",
+              label: "Image",
+              base_path: "/img/resto/",
+            }
+
+    Camping:
+      class: App\Entity\Camping
+      label: "camp"
+      edit:
+        help: "Éditer un campign"
+      form:
+        fields:
+          - { type: "group", icon: "caravan", label: "Activité" }
+          - nom
+          - { property: "description", type: "text_editor" }
+          - ville
+          - isFree
+          - {
+              type: "group",
+              icon: "upload",
+              label: "Uploads",
+              css_class: "col-ls-6",
+            }
+          - { property: "imgPathFile", type: "vich_image", label: "Image" }
+      list:
+        # collapse_actions: false
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["nom", "ville", "isFree"]
+        batch_actions: ["show", "delete"]
+        fields:
+          - nom
+          - { property: "description", type: "text" }
+          - ville
+          - isFree
+          - {
+              property: "imgPath",
+              type: "image",
+              label: "Image",
+              base_path: "/img/camping/",
+            }
+      show:
+        fields:
+          - id
+          - nom
+          - { property: "description", type: "raw" }
+          - ville
+          - isFree
+          - createdAt
+          - updatedAt
+          - {
+              property: "imgPath",
+              type: "image",
+              label: "Image",
+              base_path: "/img/camping/",
+            }
 
     User:
       class: App\Entity\User
@@ -219,69 +415,46 @@ easy_admin:
         fields:
           - { type: "group", icon: "user", label: "<strong>USER</strong>" }
           - nom
-          - 'prenom'
-          - 'email'
-          - 'userName'
-          - { property: 'password', type: 'password', type_options: { required: true } }
+          - "prenom"
+          - "email"
+          - "userName"
+          - {
+              property: "password",
+              type: "password",
+              type_options: { required: true },
+            }
           # - {property: 'password', type: 'password'}
-          - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+          - {
+              property: "roles",
+              type: "choice",
+              type_options:
+                {
+                  multiple: true,
+                  choices:
+                    { "ROLE_USER": "ROLE_USER", "ROLE_ADMIN": "ROLE_ADMIN" },
+                },
+            }
       list:
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['userName', 'nom', 'prenom', 'email']
-        batch_actions: ['show', 'delete']
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["userName", "nom", "prenom", "email"]
+        batch_actions: ["show", "delete"]
         fields:
           - nom
-          - 'prenom'
-          - 'email'
-          - 'userName'
+          - "prenom"
+          - "email"
+          - "userName"
           - roles
       show:
         fields:
           - id
           - nom
-          - 'prenom'
-          - 'email'
-          - 'userName'
+          - "prenom"
+          - "email"
+          - "userName"
           - roles
-          
-    Camping:
-      class: App\Entity\Camping
-      label: "camp"
-      edit:
-        help: "Éditer un campign"
-      form:
-        fields:
-          - { type: "group", icon: "caravan", label: "Activité" }
-          - nom
-          - {property: 'description', type: 'text_editor'}
-          - ville
-          - isFree
-          - imgPath
-      list:
-        # collapse_actions: false 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['nom', 'ville', 'isFree']
-        batch_actions: ['show', 'delete']
-        fields:
-          - nom
-          - {property: 'description', type: 'text'}
-          - ville
-          - isFree
-          - imgPath
-      show:
-        fields:
-          - id
-          - nom
-          - {property: 'description', type: 'raw'}
-          - ville
-          - isFree
-          - imgPath
 
     Marker:
       class: App\Entity\Marker
@@ -295,17 +468,19 @@ easy_admin:
           - lat
           - lng
           - ville
-          - {property: 'type', type: 'choice', type_options: { multiple: true, choices: { 'Ville': 'Ville', 'Activité': 'Activité', 'Hotel': 'Hotel', 'Restaurant': 'Restaurant' } } }
+          - type
+          # - {property: 'type', type: 'choice', type_options: { multiple: true, choices: { 'Ville': 'Ville', 'Activité': 'Activité', 'Hotel': 'Hotel', 'Restaurant': 'Restaurant' } } }
           - address
-          - {property: 'description', type: 'text-editor'}    
+          - { property: "description", type: "text-editor" }
+
       list:
         collapse_actions: true
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['name', 'ville', 'type']
-        batch_actions: ['show', 'delete']
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["name", "ville", "type"]
+        batch_actions: ["show", "delete"]
         fields:
           - name
           - lat
@@ -313,7 +488,7 @@ easy_admin:
           - ville
           - type
           - address
-          - {property: 'description', type: 'text'}
+          - { property: "description", type: "text" }
       show:
         fields:
           - id
@@ -323,8 +498,8 @@ easy_admin:
           - ville
           - type
           - address
-          - {property: 'description', type: 'raw'}
-          
+          - { property: "description", type: "raw" }
+
     Region:
       class: App\Entity\Region
       label: "Region"
@@ -336,13 +511,13 @@ easy_admin:
           - nom
           - villes
       list:
-        # collapse_actions: false 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['nom']
-        batch_actions: ['show', 'delete']
+        # collapse_actions: false
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["nom"]
+        batch_actions: ["show", "delete"]
         fields:
           - nom
           - villes
@@ -350,8 +525,8 @@ easy_admin:
         fields:
           - id
           - nom
-          - villes 
-      
+          - villes
+
     TypeVoyage:
       class: App\Entity\TypeVoyage
       label: "TypeVoyage"
@@ -361,20 +536,20 @@ easy_admin:
         fields:
           - { type: "group", icon: "suitcase", label: "type de voyage" }
           - typeVoyage
-          - {property: 'description', type: 'text-editor'}
+          - { property: "description", type: "text-editor" }
       list:
-        collapse_actions: false 
-        actions: 
-          - {name: 'show', label: 'Afficher' }
-          - {name: 'edit', label: 'Editer' }
-          - {name: 'delete', label: 'Supprimer' }
-        filters: ['typeVoyage']
-        batch_actions: ['show', 'delete']
+        collapse_actions: false
+        actions:
+          - { name: "show", label: "Afficher", icon: "eye" }
+          - { name: "edit", label: "Editer", icon: "pencil" }
+          - { name: "delete", label: "Supprimer", icon: "trash" }
+        filters: ["typeVoyage"]
+        batch_actions: ["show", "delete"]
         fields:
           - typeVoyage
-          - {property: 'description', type: 'text'}
+          - { property: "description", type: "text" }
       show:
         fields:
           - id
           - typeVoyage
-          - {property: 'description', type: 'text'}
+          - { property: "description", type: "text" }

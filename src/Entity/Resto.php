@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\RestoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Ville;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=RestoRepository::class)
+ * @Vich\Uploadable
  */
 class Resto
 {
@@ -25,8 +28,15 @@ class Resto
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @var string
      */
     private $imgPath;
+
+    /**
+     * @Vich\UploadableField(mapping="resto_path", fileNameProperty="imgPath")
+     * @var File
+     */
+    private $imgPathFile;
 
     /**
      * @ORM\Column(type="string", length=80)
@@ -37,6 +47,18 @@ class Resto
      * @ORM\Column(type="string", length=255)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ville", inversedBy="restos")
@@ -53,11 +75,17 @@ class Resto
         return $this->imgPath;
     }
 
-    public function setImgPath(string $imgPath): self
+    public function setImgPath(?string $imgPath): self
     {
         $this->imgPath = $imgPath;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -68,18 +96,6 @@ class Resto
     {
         return $this->getNom();
     }
-
-    // public function getMarker(): ?Marker
-    // {
-    //     return $this->marker;
-    // }
-
-    // public function setMarker(?Marker $marker): self
-    // {
-    //     $this->marker = $marker;
-
-    //     return $this;
-    // }
 
     public function getNom(): ?string
     {
@@ -113,6 +129,47 @@ class Resto
     public function setVille(?Ville $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getImgPathFile()
+    {
+        return $this->imgPathFile;
+    }
+
+    /**
+     * @param mixed $imgPathFile
+     * @throws \Exception
+     */
+    public function setImgPathFile(File $image = null): void
+    {
+        $this->imgPathFile = $image;
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+     public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

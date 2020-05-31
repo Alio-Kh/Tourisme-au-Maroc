@@ -14,6 +14,7 @@
                 <th>Lat</th>
                 <th>Lng</th>
                 <th>Type</th>
+                <th>Description</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ marker.lat }}</td>
                 <td>{{ marker.lng }}</td>
                 <td>{{ marker.type }}</td>
+                <td>{{ marker.description }}</td>
                 <td>
                     <a href="{{ path('marker_show', {'id': marker.id}) }}">show</a>
                     <a href="{{ path('marker_edit', {'id': marker.id}) }}">edit</a>
@@ -33,7 +35,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -172,7 +172,7 @@
         </div>
     </footer>
 
-        {% block javascripts %}{% endblock %}
+    
            
     <!-- JS here -->
     <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}"></script>
@@ -184,5 +184,6 @@
     <script src="{{ asset('js/jquery.slicknav.min.js')}}"></script>
     <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
+     {% block javascripts %}{% endblock %}
     </body>
 </html>
