@@ -18,25 +18,25 @@
 					<div class="destination_info">
 						<h3>Description</h3>
 						<p>Ouarzazate est une ville au sud des montagnes du Haut Atlas marocain,
-																																																																																											connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
-																																																																																											palais du XIXe siècle,
-																																																																																											offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
+																																																																																																									connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
+																																																																																																									palais du XIXe siècle,
+																																																																																																									offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
 						</p>
 						<p>
 							Au nord-ouest se trouve la ville fortifiée en terre rouge d'Aït-ben-Haddou, tandis que les
-																																																																																											gorges rocailleuses du Toudra s'étendent au nord-est.
-																																																																																											Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
-																																																																																											Drâa, en direction du désert.</p>
+																																																																																																									gorges rocailleuses du Toudra s'étendent au nord-est.
+																																																																																																									Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
+																																																																																																									Drâa, en direction du désert.</p>
 						<p></p>
 						<div class="single_destination">
 							<h4>Kasbah de Taourirt</h4>
 							<p>La Kasbah de Taourirt et son ancienne médina se situent dans le centre-ville de
-																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
-																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
-																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
-																																																																																																								soleil),
-																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
-																																																																																																								dignitaire de la royauté marocaine</p>
+																																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
+																																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
+																																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
+																																																																																																																								soleil),
+																																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
+																																																																																																																								dignitaire de la royauté marocaine</p>
 						</div>
 					</div>
 					<div class="bordered_1px"></div>
@@ -133,14 +133,14 @@
 									{% endif %}
 								</form>
 								{# <div class="col-lg-12">
-																																																																																																																                                        
-																																																																																																									</div>
-																																																																																																									<div class="col-lg-12">
-																																																																																																										
-																																																																																																									</div>
-																																																																																																									<div class="col-lg-12">
-																																																																																																										
-																																																																																																									</div> #}
+																																																																																																																																                                        
+																																																																																																																									</div>
+																																																																																																																									<div class="col-lg-12">
+																																																																																																																										
+																																																																																																																									</div>
+																																																																																																																									<div class="col-lg-12">
+																																																																																																																										
+																																																																																																																									</div> #}
 							</div>
 						</div>
 					</div>
@@ -571,64 +571,99 @@ m.setVisible(false);
 																</div>
 															{% endif %}
 														{% endfor %}
-														{% endfor%}
-													</div>
+													{% endfor %}
 												</div>
 											</div>
-											<!-- end campoings-->
-										{% endif %}
-										<!-- start comntaire-->
-
+										</div>
+										<!-- end campoings-->
+									{% endif %}
+									<!-- start comntaire-->
+									{% if  comentaires  is not empty %}
 										<div id="cmnt" class="destination_details_info">
 											<div class="container">
 												<div class="section_title text-center mb_70">
 													<h3>Comentaires</h3>
 												</div>
 												<div class="row justify-content-center">
-													<div class="col-lg-8 col-md-9">
-														<div class="destination_info">
-															<h4>EL ouadi Abdelati</h4>
-															<p>Uarzazate ou Ouarzazate (dérivé du français, et de l'arabe, ورزازات, Warzāzāt),
-															également connu sous le nom de La porte du désert, est une ville du sud du Maroc.
-															Uarzazate est la capitale de la province du même nom, qui fait partie de la région de
-															Sus-Masa-Draa.
-															Il est fréquenté par le tourisme en raison de sa proximité avec les montagnes de l'Atlas et
-															la vallée du Draa,
-															dont le nom vient d'une expression berbère signifiant "sans bruit" ou "sans confusion".
-															</p>
-															<p>
-																Quant à Taourit, qui est le nom de sa kashba ou citadelle,
-																																elle fait référence au berbère régional auquel elle se dresse sur un monticule.</p>
+													<div class="col-lg-8 col-md-9 col-lg-12 ">
+														<div class="destination_info" id="comentaires">
+															{% for comentaire in comentaires %}
+																<h4>{{comentaire.user.nom }}
+																	{{comentaire.user.prenom }}</h4>
+																<p>{{comentaire.comentaire}}</p>
+																<div id="border" class="bordered_1px"></div>
+															{% endfor %}
 														</div>
-														<div id="Ali" class="bordered_1px"></div>
-														<h4>KHYATTI ALi</h4>
-														<p>Ouarzazate (berbère: z z Warzazat, arabe: ورزازات, littéralement «sans bruit»),
-															surnommée La porte du désert, est une ville et capitale de la province de Ouarzazate dans le
-															Souss-Massa-Drâa du centre-sud du Maroc.
-															Ouarzazate est à une altitude de 1160 mètres au milieu d'un plateau nu au sud des montagnes du
-															Haut Atlas.
-															Au sud de la ville se trouve le désert.</p>
 													</div>
-												</div>
+													<div id="Ali" class="bordered_1px"></div>
+													<form class="AjaxForm" action="{{path('comentaire')}}" method="post" >
+														<div class="col-lg-12">
+															<div class="single_input">
+																<textarea name="comentaire" id="comentaire" cols="30" rows="10" placeholder="comentaire"></textarea>
+															</div>
+														</div>
+														<div class="col-lg-12">
+                                                              <input name="ville" id="ville" type="hidden" value="{{ville.id}}" >
+														</div>
+														<div class="col-lg-12">
+															<div class="submit_btn">
+																{%  if app.user %}
+																	<button class="boxed-btn4" type="submit">Envoyer</button>
+																{% else %}
+																	<h3>
+																		Pour faire un commentaire, <br> vous devez être connecté ,
+																		<a style="color=red;" href="{{path('app_login')}}">
+																		ici
+																	     </a>
+																	</h3>
+																	
+																{% endif %}
 
-												<div class="col-lg-12">
-													<div class="single_input">
-														<textarea name="" id="" cols="30" rows="10" placeholder="comentaire"></textarea>
-													</div>
-												</div>
-												<div class="col-lg-12">
-													<div class="submit_btn">
-														<button class="boxed-btn4" type="submit">Envoyer</button>
-													</div>
+															</div>
+														</div>
+													</form>
 												</div>
 											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
+										</div>
+										{% endif %}
+										<!-- end comntaire-->
 
+	{% endblock %}
+	{% block javascripts %}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	   <script>
+      (function (){
+		  
+        	 document.querySelector('.AjaxForm').addEventListener('submit', function(e) {
+               e.preventDefault();
+	     	axios.post($(".AjaxForm").attr('action'),{
+                     comentaire:$('#comentaire').val(),
+					 ville:$('#ville').val()
+               })
+                .then(function (response) {
+                       
+                        const $error=response.data.error;
+						if($error=="empty"){
+                          $('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>le comentaire est vide!!</strong>');
+						}else{
+                        const comentaire=response.data.comentaire;
+  				        const nom=response.data.nom;
+						const prenom=response.data.prenom;
+						$('#comentaires').append("<h4>"+nom+" "+prenom+"</h4>");
+						$('#comentaires').append("<p>"+comentaire+"</h>");
+						$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
+				        $('#error').hide();
+						}
+						
+				})
+				.catch(function (error) {
+						console.log(error);
+				});
+								
+            	 });
+		})();
 
-						<!-- end comntaire-->
-
-					{% endblock %}
+     
+		</script>
+		
+	{% endblock %}

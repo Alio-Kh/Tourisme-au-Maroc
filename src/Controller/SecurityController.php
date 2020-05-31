@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -31,6 +36,33 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        return $this->redirectToRoute('accuiel');
+    }
+     /**
+     * @Route("/inscription", name="inscription")
+     */
+    public function inscription(UserRepository $userRepository,Request $request,UserPasswordEncoderInterface $userPasswordEncoderInterface){
+        $user =new User();
+        $form=$this->createForm(UserType::class,$user);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&&$form->isValid()){
+            $password=$userPasswordEncoderInterface->encodePassword($user,$user->getPassword());
+            $user->setPassword($password);
+            $user->setRoles(["ROLE_USER"]);
+            $email=$userRepository->findOneBy(array('email'=>$user->getEmail()));
+              if(!empty($email)){
+                  $this->addFlash('message','email exist');
+                  return $this->redirectToRoute('inscription');
+             }
+             $entityManager=$this->getDoctrine()->getManager();
+             $entityManager->persist($user);
+             $entityManager->flush();
+
+               return $this->redirectToRoute('home');
+
+        }
+
+        return $this->render('security/inscription.html.twig',['form' => $form->createView()]);
+
     }
 }

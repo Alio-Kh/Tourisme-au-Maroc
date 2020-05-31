@@ -66,12 +66,18 @@ class Ville
      */
     private $description;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comentaire::class, mappedBy="ville", orphanRemoval=true)
+     */
+    private $comentaires;
+
     public function __construct()
     {
         $this->hotels = new ArrayCollection();
         $this->activites = new ArrayCollection();
         $this->campings = new ArrayCollection();
         $this->restos = new ArrayCollection();
+        $this->comentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -255,6 +261,37 @@ class Ville
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentaire[]
+     */
+    public function getComentaires(): Collection
+    {
+        return $this->comentaires;
+    }
+
+    public function addComentaire(Comentaire $comentaire): self
+    {
+        if (!$this->comentaires->contains($comentaire)) {
+            $this->comentaires[] = $comentaire;
+            $comentaire->setVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentaire(Comentaire $comentaire): self
+    {
+        if ($this->comentaires->contains($comentaire)) {
+            $this->comentaires->removeElement($comentaire);
+            // set the owning side to null (unless already changed)
+            if ($comentaire->getVille() === $this) {
+                $comentaire->setVille(null);
+            }
+        }
 
         return $this;
     }

@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -53,6 +57,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $tel;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comentaire::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $comentaires;
+
+    public function __construct()
+    {
+        $this->comentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +194,37 @@ class User implements UserInterface
     public function setTel(?string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentaire[]
+     */
+    public function getComentaires(): Collection
+    {
+        return $this->comentaires;
+    }
+
+    public function addComentaire(Comentaire $comentaire): self
+    {
+        if (!$this->comentaires->contains($comentaire)) {
+            $this->comentaires[] = $comentaire;
+            $comentaire->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentaire(Comentaire $comentaire): self
+    {
+        if ($this->comentaires->contains($comentaire)) {
+            $this->comentaires->removeElement($comentaire);
+            // set the owning side to null (unless already changed)
+            if ($comentaire->getUser() === $this) {
+                $comentaire->setUser(null);
+            }
+        }
 
         return $this;
     }

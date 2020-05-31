@@ -1,189 +1,210 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-        {% endblock %}
-         <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Travelo</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}{% endblock %}
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Travelo</title>
+		<meta name="description" content="">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png')}}">
-    <!-- Place favicon.ico in the root directory -->
+		<!-- <link rel="manifest" href="site.webmanifest"> -->
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png')}}">
+		<!-- Place favicon.ico in the root directory -->
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/slicknav.css')}}">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-    </head>
-    <body>
-     <!-- header-start -->
-    <header>
-        <div class="header-area ">
-            <div id="sticky-header" class="main-header-area">
-                <div class="container-fluid">
-                    <div class="header_bottom_border">
-                        <div class="row align-items-center">
-                            <div class="col-xl-2 col-lg-2">
-                                <div class="logo">
-                                    <a href="{{ path('home') }}">
-                                        <h2 style="color: red;">LOGO </h2> 
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="main-menu  d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            <li><a class="active" href="{{path('home')}}">Accuiel</a></li>
-                                            <li><a class="" href="{{path('destination')}}">Destination</a></l /li>
-                                            <li><a  href="{{ path('contact') }}">Contact</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 d-none d-lg-block">
-                                <div class="social_wrap d-flex align-items-center justify-content-end">
-                                    <div class="number">
-                                        <p> <i class="fa fa-phone"></i> +212 600-000000</p>
-                                    </div>
-                                    <div class="social_links d-none d-xl-block">
-                                        <ul>
-                                            <li><a href="#"> <i class="fab fa-instagram"></i> </a></li>
-                                            <li><a href="#"> <i class="fab fa-linkedin"></i> </a></li>
-                                            <li><a href="#"> <i class="fab fa-facebook-f"></i> </a></li>
-                                            <li><a href="#"> <i class="fab fa-google"></i> </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="seach_icon">
-                                <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
+		<!-- CSS here -->
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"> <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/slicknav.css')}}">
 
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- header-end -->
-
-        {% block body %}{% endblock %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-md-6 col-lg-4 ">
-                        <div class="footer_widget">
-                            <div class="footer_logo">
-                                <a href="#">
-                                    LOGO
-                                </a>
-                            </div>
-                            <p>xcxcvcvfvlkdfvd <br> maroc <br>
-                                <a href="#">0645454v545</a> <br>
-                                <a href="#">contact@gmail.com</a>
-                            </p>
-                            <div class="socail_links">
-                                <ul>
-                                    <li><a href="#"> <i class="fab fa-instagram"></i> </a></li>
-                                    <li><a href="#"> <i class="fab fa-linkedin"></i> </a></li>
-                                    <li><a href="#"> <i class="fab fa-facebook-f"></i> </a></li>
-                                    <li><a href="#"> <i class="fab fa-google"></i> </a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-         
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Lieux populaires
-                            </h3>
-                            <ul class="links double_links">
-                                <li><a href="#">Atlas</a></li>
-                                <li><a href="#">casablanca</a></li>
-                                <li><a href="#">fes</a></li>
-                                <li><a href="#">essaouira</a></li>
-                                <li><a href="#">chefchaouen</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Instagram
-                            </h3>
-                            <div class="instagram_feed">
-                                <div class="single_insta">
-                                    <a href="#">
-                                        <img src="{{asset('img/instagram/1.png')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="single_insta">
-                                    <a href="#">
-                                        <img src="{{asset('img/instagram/2.png')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="single_insta">
-                                    <a href="#">
-                                        <img src="{{asset('img/instagram/3.png')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="single_insta">
-                                    <a href="#">
-                                        <img src="{{asset('img/instagram/4.png')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="single_insta">
-                                    <a href="#">
-                                        <img src="{{asset('img/instagram/5.png')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="single_insta">
-                                    <a href="#">
-                                        <img src="{{asset('img/instagram/6.png')}}" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+	</head>
+	<body>
+		<!-- header-start -->
+		<div class="container-fluid  " style="background-color:lightcoral;">
+			  <div class="row ">
+			     <div class="col-lg-10 col-sm-0 " ></div>
+				<div class=" col-lg-1  col-sm-6 text-center">
+					<a class="btn btn-primary" href="{{path('inscription')}}">inscription</a>
+				</div>
+				<div class=" col-lg-1  col-sm-6 text-center" >
+					<a class="btn btn-primary " href="{{path('app_login')}}">connexion</a>
+				</div>
+			   </div>
            
-    <!-- JS here -->
-    <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}"></script>
-    <script src="{{ asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
-    <script src="{{ asset('js/popper.min.js')}}"></script>
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('js/wow.min.js')}}"></script>
-    <script src="{{ asset('js/jquery.slicknav.min.js')}}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{ asset('js/main.js')}}"></script>
-     {% block javascripts %}{% endblock %}
-    </body>
-</html>
+		</div>
+		<header>
+			<div class="header-area ">
+				<div id="sticky-header" class="main-header-area">
+					<div class="container-fluid">
+						<div class="header_bottom_border">
+							<div class="row align-items-center">
+								<div class="col-xl-2 col-lg-2">
+									<div class="logo">
+										<a href="{{ path('home') }}">
+											<h2 style="color: red;">LOGO
+											</h2>
+										</a>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6">
+									<div class="main-menu  d-none d-lg-block">
+										<nav>
+											<ul id="navigation">
+												<li>
+													<a class="active" href="{{path('home')}}">Accuiel</a>
+												</li>
+												<li>
+													<a class="" href="{{path('destination')}}">Destination</a>
+												</li>
+											</l/li>
+											<li>
+												<a href="{{ path('contact') }}">Contact</a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 d-none d-lg-block">
+								<div class="social_wrap d-flex align-items-center justify-content-end">
+									<div class="number">
+										<p>
+											<i class="fa fa-phone"></i>
+											+212 600-000000</p>
+									</div>
+									<div class="social_links d-none d-xl-block">
+										<ul>
+											<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+											<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+											<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+											<li><a href="#"><i class="fab fa-google"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="seach_icon">
+								<a data-toggle="modal" data-target="#exampleModalCenter" href="#">
+									<i class="fa fa-search"></i>
+								</a>
+							</div>
+							<div class="col-12">
+								<div class="mobile_menu d-block d-lg-none"></div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html></header><!-- header-end -->{% block body %}{% endblock %}<footer class="footer">
+<div class="footer_top">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-4 col-md-6 col-lg-4 ">
+				<div class="footer_widget">
+					<div class="footer_logo">
+						<a href="#">
+							LOGO
+						</a>
+					</div>
+					<p>xcxcvcvfvlkdfvd
+						<br>
+						maroc
+						<br>
+						<a href="#">0645454v545</a>
+						<br>
+						<a href="#">contact@gmail.com</a>
+					</p>
+					<div class="socail_links">
+						<ul>
+							<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fab fa-google"></i></a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xl-3 col-md-6 col-lg-3">
+				<div class="footer_widget">
+					<h3 class="footer_title">
+						Lieux populaires
+					</h3>
+					<ul class="links double_links">
+						<li>
+							<a href="#">Atlas</a>
+						</li>
+						<li>
+							<a href="#">casablanca</a>
+						</li>
+						<li>
+							<a href="#">fes</a>
+						</li>
+						<li>
+							<a href="#">essaouira</a>
+						</li>
+						<li>
+							<a href="#">chefchaouen</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-xl-3 col-md-6 col-lg-3">
+				<div class="footer_widget">
+					<h3 class="footer_title">
+						Instagram
+					</h3>
+					<div class="instagram_feed">
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/1.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/2.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/3.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/4.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/5.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/6.png')}}" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></footer><!-- JS here --><script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}"></script><script src="{{ asset('js/vendor/jquery-1.12.4.min.js')}}"></script><script src="{{ asset('js/popper.min.js')}}"></script><script src="{{ asset('js/bootstrap.min.js')}}"></script><script src="{{ asset('js/owl.carousel.min.js')}}"></script><script src="{{ asset('js/wow.min.js')}}"></script><script src="{{ asset('js/jquery.slicknav.min.js')}}"></script><script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script><script src="{{ asset('js/main.js')}}"></script>{% block javascripts %}{% endblock %}</body></html>
