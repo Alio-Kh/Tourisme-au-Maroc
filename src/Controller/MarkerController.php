@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Marker;
-use App\Form\Marker1Type;
+use App\Form\Marker2Type;
 use App\Repository\MarkerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class MarkerController extends AbstractController
     public function new(Request $request): Response
     {
         $marker = new Marker();
-        $form = $this->createForm(Marker1Type::class, $marker);
+        $form = $this->createForm(Marker2Type::class, $marker);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class MarkerController extends AbstractController
      */
     public function edit(Request $request, Marker $marker): Response
     {
-        $form = $this->createForm(Marker1Type::class, $marker);
+        $form = $this->createForm(Marker2Type::class, $marker);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

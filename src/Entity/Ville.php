@@ -2,15 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\VilleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Marker;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VilleRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Mapping\Annotation as EA;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass=VilleRepository::class)
+ * @Vich\Uploadable
  */
 class Ville
 {
@@ -28,11 +32,19 @@ class Ville
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $image;
 
     /**
-     * ORM\OneToMany(targetEntity="Marker", mappedBy="ville")
+     * @Vich\UploadableField(mapping="ville_path", fileNameProperty="image")
+     * @var File
+     */
+    private $imgPathFile;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Marker", mappedBy="ville")
      */
     private $markers;
 
@@ -70,14 +82,28 @@ class Ville
      * @ORM\OneToMany(targetEntity=Comentaire::class, mappedBy="ville", orphanRemoval=true)
      */
     private $comentaires;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $createdAt;
 
     public function __construct()
     {
+        $this->markers = new ArrayCollection();
         $this->hotels = new ArrayCollection();
         $this->activites = new ArrayCollection();
         $this->campings = new ArrayCollection();
         $this->restos = new ArrayCollection();
         $this->comentaires = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -88,7 +114,7 @@ class Ville
     {
         return $this->name;
     }
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
@@ -100,7 +126,7 @@ class Ville
         return $this;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -278,6 +304,24 @@ class Ville
         if (!$this->comentaires->contains($comentaire)) {
             $this->comentaires[] = $comentaire;
             $comentaire->setVille($this);
+
+        }
+        return $this;
+    }
+ 
+    /**     
+     * @return Collection|Marker[]
+     */
+    public function getMarkers(): Collection
+    {
+        return $this->markers;
+    }
+
+    public function addMarker(Marker $marker): self
+    {
+        if (!$this->markers->contains($marker)) {
+            $this->markers[] = $marker;
+            $marker->setVille($this);
         }
 
         return $this;
@@ -290,8 +334,63 @@ class Ville
             // set the owning side to null (unless already changed)
             if ($comentaire->getVille() === $this) {
                 $comentaire->setVille(null);
+
+            }
+       }
+       return $this;
+    }
+
+                
+    public function removeMarker(Marker $marker): self
+    {
+        if ($this->markers->contains($marker)) {
+            $this->markers->removeElement($marker);
+            // set the owning side to null (unless already changed)
+            if ($marker->getVille() === $this) {
+                $marker->setVille(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImgPathFile()
+    {
+        return $this->imgPathFile;
+    }
+
+    /**
+     * @param mixed $imgPathFile
+     * @throws \Exception
+     */
+    public function setImgPathFile(File $image = null): void
+    {
+        $this->imgPathFile = $image;
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

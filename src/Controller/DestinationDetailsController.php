@@ -50,18 +50,19 @@ class DestinationDetailsController extends AbstractController
     public function comentaire(Request $request,VilleRepository $villeRepository){
         $data=explode("\"" ,$request->getContent());
         $c=$data[3];
-        $ville= $data[6];
+        $ville= $data[7];
         $error="empty";
         $comentaire =new Comentaire();
         $comentaire->setComentaire($c);
         $comentaire->setUser($this->getUser());
-       
-        $ville=$villeRepository->findOneBy(array('id' => $ville));
+
+        $ville=$villeRepository->findOneBy(array('id'=>$ville));
+        
         $comentaire->setVille($ville);
         if(!empty($c)){
          $entityManager=$this->getDoctrine()->getManager();
          $entityManager->persist($comentaire);
-        // $entityManager->flush();
+         $entityManager->flush();
            $error="valid";
          }
         

@@ -39,15 +39,13 @@
 									<div class="col-lg-12">
 										<div class="form-group">
 											<select id="region" name="idRegion" class="form-control">
-												<option value="0"  selected>toutes les Régions</option>
+												   <option value="0"  selected>toutes les Régions</option>
 												{% for region in regions %}
 													<option value="{{region.id}}">{{region.nom}}</option>
 												{% endfor %}
 											</select>
 										</div>
-
 									</div>
-
 									<div class="col-lg-12">
 										<div class="form-group">
 											<select class="form-control">
@@ -61,10 +59,7 @@
 										</div>
 									</div>
 								</div>
-
-
 							</div>
-
 							<div class="reset_btn">
 								<button class="boxed-btn4" type="submit">Réinitialiser</button>
 								<p id="ana"></p>
@@ -80,8 +75,7 @@
 							<div id="{{ville.name}}" class="col-lg-6 col-md-6">
 								<div class="single_place">
 									<div class="thumb">
-										<img src="{{asset(ville.image)}}" alt="">
-
+										<img src="{{asset("/img/place/" ~ ville.image)}}" alt={{ ville.name }}>
 									</div>
 									<div class="place_info">
 										<a href="{{ path('destination_details', {'name': ville.name}) }}">

@@ -25,7 +25,6 @@ class Marker
 
     /**
      * @ORM\ManyToOne(targetEntity="Ville", inversedBy="markers")
-     * @ORM\JoinColumn(name="ville_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $ville;
 
@@ -128,18 +127,6 @@ class Marker
         return $this->getName();
     }
 
-    public function getVille(): ?ville
-    {
-        return $this->ville;
-    }
-
-    public function setVille(?ville $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -148,6 +135,18 @@ class Marker
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }
