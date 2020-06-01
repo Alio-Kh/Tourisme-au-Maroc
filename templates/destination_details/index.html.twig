@@ -596,14 +596,15 @@ m.setVisible(false);
 																{%  if app.user %}
 																	<button class="boxed-btn4" type="submit">Envoyer</button>
 																{% else %}
+																      {{ app.session.set('ville',ville.name)}}
 																	<h3>
 																		Pour faire un commentaire, <br> vous devez être connecté ,
-																		<a style="color=red;" href="{{path('app_login')}}">
+																		<a style="color=red;" href="{{path('comentaire')}}">
 																		ici
 																	     </a>
 																	</h3>
-																	
-																{% endif %}
+
+																{% endif %} 
 
 															</div>
 														</div>

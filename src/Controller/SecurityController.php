@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,7 +58,11 @@ class SecurityController extends AbstractController
              $entityManager=$this->getDoctrine()->getManager();
              $entityManager->persist($user);
              $entityManager->flush();
-
+             
+             $ville=$request->getSession()->get('ville');
+             if( $ville!=null){
+               return new RedirectResponse('/'.$ville.'/details');
+             }
                return $this->redirectToRoute('home');
 
         }
