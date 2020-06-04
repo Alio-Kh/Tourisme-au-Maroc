@@ -4,6 +4,10 @@
 {% endblock %}
 
 {% block body %}
+     {{ app.session.set('destination','destination')}}
+     {% set v = app.session.remove('ville') %}
+	  {% set c= app.session.remove('contact') %}
+
 	<!-- bradcam_area  -->
 	<div class="bradcam_area bradcam_bg_2">
 		<div class="container">

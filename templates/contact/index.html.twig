@@ -3,8 +3,10 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
- 
-     <!-- bradcam_area  -->
+   {{ app.session.set('contact','contact')}}
+     {% set v = app.session.remove('ville')%}
+	 {% set d = app.session.remove('destination')%}
+      <!-- bradcam_area  -->
      <div class="bradcam_area bradcam_bg_4">
         <div class="container">
             <div class="row">

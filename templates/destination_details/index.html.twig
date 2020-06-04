@@ -4,7 +4,9 @@
 {% endblock %}
 
 {% block body %}
-
+	{{ app.session.set('ville',ville.name)}}
+	{% set d = app.session.remove('destination') %}
+	{% set c =  app.session.remove('contact') %}
 	<div class="destination_banner_wrap overlay" style="background-image:url({{asset('/img/place/'~ ville.image)}});">
 		<div class="destination_text text-center">
 			<h3>{{ville.name}}</h3>
@@ -18,25 +20,25 @@
 					<div class="destination_info">
 						<h3>Description</h3>
 						<p>Ouarzazate est une ville au sud des montagnes du Haut Atlas marocain,
-																																																																																																																																																																																													connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
-																																																																																																																																																																																													palais du XIXe siècle,
-																																																																																																																																																																																													offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
+																																																																																																																																																																																																											connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
+																																																																																																																																																																																																											palais du XIXe siècle,
+																																																																																																																																																																																																											offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
 						</p>
 						<p>
 							Au nord-ouest se trouve la ville fortifiée en terre rouge d'Aït-ben-Haddou, tandis que les
-																																																																																																																																																																																													gorges rocailleuses du Toudra s'étendent au nord-est.
-																																																																																																																																																																																													Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
-																																																																																																																																																																																													Drâa, en direction du désert.</p>
+																																																																																																																																																																																																											gorges rocailleuses du Toudra s'étendent au nord-est.
+																																																																																																																																																																																																											Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
+																																																																																																																																																																																																											Drâa, en direction du désert.</p>
 						<p></p>
 						<div class="single_destination">
 							<h4>Kasbah de Taourirt</h4>
 							<p>La Kasbah de Taourirt et son ancienne médina se situent dans le centre-ville de
-																																																																																																																																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
-																																																																																																																																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
-																																																																																																																																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
-																																																																																																																																																																																																																								soleil),
-																																																																																																																																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
-																																																																																																																																																																																																																								dignitaire de la royauté marocaine</p>
+																																																																																																																																																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
+																																																																																																																																																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
+																																																																																																																																																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
+																																																																																																																																																																																																																																								soleil),
+																																																																																																																																																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
+																																																																																																																																																																																																																																								dignitaire de la royauté marocaine</p>
 						</div>
 					</div>
 					<div class="bordered_1px"></div>
@@ -133,14 +135,14 @@
 									{% endif %}
 								</form>
 								{# <div class="col-lg-12">
-																																																																																																																																																																																							                                        
-																																																																																																						</div>
-																																																																																																						<div class="col-lg-12">
-																																																																																																																																																																																																																										
-																																																																																																						</div>
-																																																																																																						<div class="col-lg-12">
-																																																																																																																																																																																																																										
-																																																																																																						</div> #}
+																																																																																																																																																																																																							                                        
+																																																																																																																						</div>
+																																																																																																																						<div class="col-lg-12">
+																																																																																																																																																																																																																																										
+																																																																																																																						</div>
+																																																																																																																						<div class="col-lg-12">
+																																																																																																																																																																																																																																										
+																																																																																																																						</div> #}
 							</div>
 						</div>
 					</div>
@@ -621,7 +623,7 @@ m.setVisible(false);
 																</button>
 															</div>
 														{% else %}
-															{{ app.session.set('ville',ville.name)}}
+
 															<div class="newsletter_text">
 																<p>Pour faire un commentaire,  vous devez
 																	<br>
