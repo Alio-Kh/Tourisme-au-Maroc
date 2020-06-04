@@ -170,7 +170,7 @@ p {
 /* line 69, ../../Arafath/CL/December/231. Travel-02/HTML/scss/theme-default.scss */
 
 label {
-    color: #7e7e7e;
+    color: #7a7070;
     cursor: pointer;
     font-size: 14px;
     font-weight: 400;
@@ -1018,8 +1018,8 @@ h3 {
 .header-area {
     left: 0;
     right: 0;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 9;
     position: relative;
 }
@@ -3553,11 +3553,13 @@ h3 {
 /* line 1, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_newsletter.scss */
 
 .newletter_area {
-    background-image: url(../img/banner/newsletter.png);
+    background-image: url(../img/banner/bradcam.png);
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: center center;
     background-size: cover;
     padding: 67px 0;
+    margin-bottom: 60px;
 }
 
 
@@ -3584,12 +3586,24 @@ h3 {
 
 /* line 17, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_newsletter.scss */
 
-.newletter_area .newsletter_text h4 {
+.newletter_area .newsletter_text h3 {
     font-size: 24px;
     font-weight: 400;
     color: #fff;
     margin-bottom: 0;
     margin-bottom: 11px;
+}
+
+.newletter_area .single_input textarea {
+    width: 100%;
+    background: #F4F4F4;
+    height: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #000;
+    padding-left: 15px;
+    border: none;
 }
 
 
@@ -3648,14 +3662,14 @@ h3 {
 
 /* line 55, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_newsletter.scss */
 
-.newletter_area .mail_form .newsletter_field input:focus {
+.newletter_area .newsletter_field input:focus {
     outline: none;
 }
 
 
 /* line 61, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_newsletter.scss */
 
-.newletter_area .mail_form .newsletter_btn button {
+.newletter_area .newsletter_btn button {
     width: 100%;
     text-align: center;
     padding: 13px 10px;
@@ -3663,7 +3677,7 @@ h3 {
 
 @media (min-width: 768px) and (max-width: 991px) {
     /* line 61, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_newsletter.scss */
-    .newletter_area .mail_form .newsletter_btn button {
+    .newletter_area .newsletter_btn button {
         width: auto;
         padding: 13px 40px;
     }

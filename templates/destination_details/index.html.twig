@@ -18,25 +18,25 @@
 					<div class="destination_info">
 						<h3>Description</h3>
 						<p>Ouarzazate est une ville au sud des montagnes du Haut Atlas marocain,
-																																																																																																									connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
-																																																																																																									palais du XIXe siècle,
-																																																																																																									offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
+																																																																																																																																																																																													connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
+																																																																																																																																																																																													palais du XIXe siècle,
+																																																																																																																																																																																													offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
 						</p>
 						<p>
 							Au nord-ouest se trouve la ville fortifiée en terre rouge d'Aït-ben-Haddou, tandis que les
-																																																																																																									gorges rocailleuses du Toudra s'étendent au nord-est.
-																																																																																																									Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
-																																																																																																									Drâa, en direction du désert.</p>
+																																																																																																																																																																																													gorges rocailleuses du Toudra s'étendent au nord-est.
+																																																																																																																																																																																													Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
+																																																																																																																																																																																													Drâa, en direction du désert.</p>
 						<p></p>
 						<div class="single_destination">
 							<h4>Kasbah de Taourirt</h4>
 							<p>La Kasbah de Taourirt et son ancienne médina se situent dans le centre-ville de
-																																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
-																																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
-																																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
-																																																																																																																								soleil),
-																																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
-																																																																																																																								dignitaire de la royauté marocaine</p>
+																																																																																																																																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
+																																																																																																																																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
+																																																																																																																																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
+																																																																																																																																																																																																																								soleil),
+																																																																																																																																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
+																																																																																																																																																																																																																								dignitaire de la royauté marocaine</p>
 						</div>
 					</div>
 					<div class="bordered_1px"></div>
@@ -133,14 +133,14 @@
 									{% endif %}
 								</form>
 								{# <div class="col-lg-12">
-																																																																																							                                        
-						</div>
-						<div class="col-lg-12">
-																																																																																																																										
-						</div>
-						<div class="col-lg-12">
-																																																																																																																										
-						</div> #}
+																																																																																																																																																																																							                                        
+																																																																																																						</div>
+																																																																																																						<div class="col-lg-12">
+																																																																																																																																																																																																																										
+																																																																																																						</div>
+																																																																																																						<div class="col-lg-12">
+																																																																																																																																																																																																																										
+																																																																																																						</div> #}
 							</div>
 						</div>
 					</div>
@@ -194,21 +194,21 @@ activiteMarkers.push(activiteMarker);
 						</script>
 						{% endfor%}
 
-{% for restoMarker in restoMarkers %}
-<script>
-var restoMarker = {
+						{% for restoMarker in restoMarkers %}
+							<script>
+								var restoMarker = {
 position: {
 lat: {{ restoMarker.lat }},
 lng: {{ restoMarker.lng }}
 },
-title: "{{ restoMarker.name | replace({' ': '_'})}}"
+title: "{{ restoMarker.name | replace({' ': '_'}) }}"
 };
 restoMarkers.push(restoMarker);
-								</script>
-								{% endfor%}
+							</script>
+							{% endfor%}
 
-								<script>
-									function initMap() {
+							<script>
+								function initMap() {
 var uluru = {
 lat: {{ villeMarker.lat }},
 lng: {{ villeMarker.lng }}
@@ -373,284 +373,331 @@ m.setVisible(false);
 });
 
 }
-								</script>
+							</script>
 
-								<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC9pqdr3_Wbb9jGSl9EBKNNNAhcA6puE&callback=initMap"></script>
+							<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC9pqdr3_Wbb9jGSl9EBKNNNAhcA6puE&callback=initMap"></script>
 
-							</div>
 						</div>
-						
-					<!-- end description-->
-						{% if hotels is not empty  and hotelMarkers is not empty %}
-							<!-- start hotels-->
-							<div class="popular_places_area">
-								<div class="container">
-									<div class="row justify-content-center">
-										<div class="col-lg-6">
-											<div class="section_title text-center mb_70">
-												<h3>Hotels</h3>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										{% for marker in hotelMarkers %}
-											{% for hotel in  hotels%}
-												{% if marker.name | replace({' ': '_'}) == hotel.nom | replace({' ': '_'}) %}
-													<div id={{marker.name | replace({' ': '_'})}} class="col-lg-4 col-md-6">
-														<div class="single_place">
-															<div class="thumb">
-																<img src="{{asset('/img/hotel/' ~ hotel.imgPath)}}" alt={{hotel.nom}}>
-															</div>
-															<div class="place_info">
-																<a href="destination_details.html">
-																	<h3>{{marker.name}}</h3>
-																</a>
-																<div class="rating_days d-flex justify-content-between">
-																	<span class="d-flex justify-content-center align-items-center">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<a href="#">(20 Review)</a>
-																	</span>
+					</div>
 
-																</div>
-															</div>
-														</div>
-													</div>
-												{% endif %}
-											{% endfor %}
-										{% endfor %}
+					<!-- end description-->
+					{% if hotels is not empty  and hotelMarkers is not empty %}
+						<!-- start hotels-->
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Hotels</h3>
 										</div>
 									</div>
 								</div>
-						{% endif %}
+								<div class="row">
+									{% for marker in hotelMarkers %}
+										{% for hotel in  hotels%}
+											{% if marker.name | replace({' ': '_'}) == hotel.nom | replace({' ': '_'}) %}
+												<div id={{marker.name | replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img src="{{asset('/img/hotel/' ~ hotel.imgPath)}}" alt={{hotel.nom}}>
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<a href="#">(20 Review)</a>
+																</span>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endif %}
 					<!-- end hotels-->
 
 					<!-- start Restaurants-->
-						{% if restos is not empty %}
-							<div class="popular_places_area">
-								<div class="container">
-									<div class="row justify-content-center">
-										<div class="col-lg-6">
-											<div class="section_title text-center mb_70">
-												<h3>Restaurants</h3>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										{% for marker in restoMarkers %}
-											{% for resto in  restos%}
-												{% if marker.name | replace({' ': '_'}) == resto.nom | replace({' ': '_'}) %}
-													<div id={{marker.name| replace({' ': '_'})}} class="col-lg-4 col-md-6">
-														<div class="single_place">
-															<div class="thumb">
-																<img style="width: 400px; height: 425px;" src="{{asset('/img/resto/' ~ resto.imgPath)}}" alt="resto.nom">
-															</div>
-															<div class="place_info">
-																<a href="destination_details.html">
-																	<h3>{{marker.name}}</h3>
-																</a>
-																<div class="rating_days d-flex justify-content-between">
-																	<span class="d-flex justify-content-center align-items-center">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<a href="#">(20 Review)</a>
-																	</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												{% endif %}
-											{% endfor %}
-										{% endfor %}
+					{% if restos is not empty %}
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Restaurants</h3>
 										</div>
 									</div>
 								</div>
-						{% endif %}
+								<div class="row">
+									{% for marker in restoMarkers %}
+										{% for resto in  restos%}
+											{% if marker.name | replace({' ': '_'}) == resto.nom | replace({' ': '_'}) %}
+												<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset('/img/resto/' ~ resto.imgPath)}}" alt="resto.nom">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<a href="#">(20 Review)</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endif %}
 					<!-- end Restaurants-->
 
 					<!-- start activite-->
-						{% if activites is not empty %}	
-							<div class="popular_places_area">
-								<div class="container">
-									<div class="row justify-content-center">
-										<div class="col-lg-6">
-											<div class="section_title text-center mb_70">
-												<h3>Activités</h3>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										{% for marker in activiteMarkers %}
-											{% for activite in  activites %}
-												{% if marker.name | replace({' ': '_'}) == activite.nom | replace({' ': '_'}) %}
-													<div id={{marker.name| replace({' ': '_'})}} class="col-lg-4 col-md-6">
-														<div class="single_place">
-															<div class="thumb">
-																<img style="width: 400px; height: 425px;" src="{{asset('/img/activite/' ~ activite.imgPath)}}" alt="activite.nom">
-															</div>
-															<div class="place_info">
-																<a href="destination_details.html">
-																	<h3>{{marker.name}}</h3>
-																</a>
-																<div class="rating_days d-flex justify-content-between">
-																	<span class="d-flex justify-content-center align-items-center">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<a href="#">(20 Review)</a>
-																	</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												{% endif %}
-											{% endfor %}
-										{% endfor %}
+					{% if activites is not empty %}
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Activités</h3>
 										</div>
 									</div>
 								</div>
-								
-						{% endif %}
+								<div class="row">
+									{% for marker in activiteMarkers %}
+										{% for activite in  activites %}
+											{% if marker.name | replace({' ': '_'}) == activite.nom | replace({' ': '_'}) %}
+												<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset('/img/activite/' ~ activite.imgPath)}}" alt="activite.nom">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<a href="#">(20 Review)</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+
+					{% endif %}
 					<!-- end Restaurants-->
 
 					<!-- start campings-->
-						{% if campings is not empty %}
-							<div class="popular_places_area">
-								<div class="container">
-									<div class="row justify-content-center">
-										<div class="col-lg-6">
-											<div class="section_title text-center mb_70">
-												<h3>Campings</h3>
+					{% if campings is not empty %}
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Campings</h3>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									{% for marker in campingMarkers %}
+										{% for camping in  campings %}
+											{% if marker.name | replace({' ': '_'}) == camping.nom | replace({' ': '_'}) %}
+												<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset('/img/camping/' ~ camping.imgPath)}}" alt="camping.nom">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<i class="fa fa-star"></i>
+																	<a href="#">(20 Review)</a>
+																</span>
+															</div>
+														{% endif %}
+													{% endfor %}
+												{% endfor %}
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										{% for marker in campingMarkers %}
-											{% for camping in  campings %}
-												{% if marker.name | replace({' ': '_'}) == camping.nom | replace({' ': '_'}) %}
-													<div id={{marker.name| replace({' ': '_'})}} class="col-lg-4 col-md-6">
-														<div class="single_place">
-															<div class="thumb">
-																<img style="width: 400px; height: 425px;" src="{{asset('/img/camping/' ~ camping.imgPath)}}" alt="camping.nom">
+									<!-- end campoings-->
+								{% endif %}
+								<!-- start comntaire-->
+
+								<div id="cmnt" class="destination_details_info ">
+									<div class="container">
+										<div class="section_title text-center mb_70">
+											<h3>Comentaires</h3>
+										</div>
+										<div class="row justify-content-center">
+											<div class="col-lg-8 col-md-9 col-lg-12 ">
+												<div class="destination_info" id="comentaires">
+													{% for comentaire in comentaires %}
+														<h4>{{comentaire.user.nom }}
+															{{comentaire.user.prenom }}</h4>
+														<p>{{comentaire.comentaire}}</p>
+														{% if comentaire.image is not  null %}
+															<div class="container">
+																<img style="height:200px; width:200px ;" src="{{asset('img/comentaire/' ~ comentaire.image)}}">
 															</div>
-															<div class="place_info">
-																<a href="destination_details.html">
-																	<h3>{{marker.name}}</h3>
-																</a>
-																<div class="rating_days d-flex justify-content-between">
-																	<span class="d-flex justify-content-center align-items-center">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<a href="#">(20 Review)</a>
-																	</span>
-																</div>
-															{% endif %}
-														{% endfor %}
+														{% endif %}
+														<div id="border" class="bordered_1px"></div>
+
 													{% endfor %}
 												</div>
 											</div>
+											<div id="Ali" class="bordered_1px"></div>
 										</div>
-										<!-- end campoings-->
-									{% endif %}
-									<!-- start comntaire-->
-									{% if  comentaires  is not empty %}
-										<div id="cmnt" class="destination_details_info">
-											<div class="container">
-												<div class="section_title text-center mb_70">
-													<h3>Comentaires</h3>
-												</div>
-												<div class="row justify-content-center">
-													<div class="col-lg-8 col-md-9 col-lg-12 ">
-														<div class="destination_info" id="comentaires">
-															{% for comentaire in comentaires %}
-																<h4>{{comentaire.user.nom }}
-																	{{comentaire.user.prenom }}</h4>
-																<p>{{comentaire.comentaire}}</p>
-																<div id="border" class="bordered_1px"></div>
-															{% endfor %}
+
+									</div>
+								</div>
+
+								<div class="newletter_area overlay">
+									<div class="container  d-flex justify-content-center">
+										<div class="row align-items-center">
+											<div class="row align-items-center">
+												<form class="AjaxForm" action="{{path('comentaire')}}" method="post" enctype="multipart/form-data">
+													<div class="col-lg-12">
+														<div class="single_input">
+															<textarea name="" id="comentaire" cols="30" rows="7" placeholder=" votre comentaire"></textarea>
 														</div>
 													</div>
-													<div id="Ali" class="bordered_1px"></div>
-													<form class="AjaxForm" action="{{path('comentaire')}}" method="post" >
-														<div class="col-lg-12">
-															<div class="single_input">
-																<textarea name="comentaire" id="comentaire" cols="30" rows="10" placeholder="comentaire"></textarea>
-															</div>
-														</div>
-														<div class="col-lg-12">
-                                                              <input name="ville" id="ville" type="hidden" value="{{ville.id}}" >
-														</div>
-														<div class="col-lg-12">
-															<div class="submit_btn">
-																{%  if app.user %}
-																	<button class="boxed-btn4" type="submit">Envoyer</button>
-																{% else %}
-																      {{ app.session.set('ville',ville.name)}}
-																	<h3>
-																		Pour faire un commentaire, <br> vous devez être connecté ,
-																		<a style="color=red;" href="{{path('comentaire')}}">
-																		ici
-																	     </a>
-																	</h3>
+													<div class="col-lg-12">
+														<input name="ville" id="ville" type="hidden" value="{{ville.id}}">
+													</div>
+													<div class="col-lg-12">
 
-																{% endif %} 
-
+														{%  if app.user %}
+															<div class="custom-file">
+																<input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg">
+																<label class="custom-file-label" for="customFile">
+																	la  photo choisi</label>
+																<br><br>
 															</div>
-														</div>
-													</form>
-												</div>
+
+															<div class="newsletter_btn">
+																<button class="boxed-btn4 " type="submit">Envoyer<i class="fa fa-send fa-tw cont-send"></i>
+																</button>
+															</div>
+														{% else %}
+															{{ app.session.set('ville',ville.name)}}
+															<div class="newsletter_text">
+																<p>Pour faire un commentaire,  vous devez
+																	<br>
+																	être connecté ,
+																	<button type="button" class="btn btn-secondary">
+																		<a href="{{path('comentaire')}}">
+																			ici</a>
+																	</button>
+																</p>
+															</div>
+
+														{% endif %}
+													</div>
+												</form>
 											</div>
+
 										</div>
-										{% endif %}
-										<!-- end comntaire-->
+									</div>
+								</div>
+								<br><br><br>
 
-	{% endblock %}
-	{% block javascripts %}
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	   <script>
-      (function (){
-		  
-        	 document.querySelector('.AjaxForm').addEventListener('submit', function(e) {
-               e.preventDefault();
-	     	axios.post($(".AjaxForm").attr('action'),{
-                     comentaire:$('#comentaire').val(),
-					 ville:$('#ville').val()
-               })
-                .then(function (response) {
-                       console.log(response);
-                        const $error=response.data.error;
-						if($error=="empty"){
-                          $('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>le comentaire est vide!!</strong>');
-						}else{
-                        const comentaire=response.data.comentaire;
-  				        const nom=response.data.nom;
-						const prenom=response.data.prenom;
-						$('#comentaires').append("<h4>"+nom+" "+prenom+"</h4>");
-						$('#comentaires').append("<p>"+comentaire+"</h>");
-						$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
-				        $('#error').hide();
-						}
-						
-				})
-				.catch(function (error) {
-						console.log(error);
-				});
-								
-            	 });
-		})();
 
-     
-		</script>
-		
-	{% endblock %}
+								<!-- end comntaire-->
+
+							{% endblock %}
+							{% block javascripts %}
+								<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+								<script>
+									(function () {
+$(".custom-file-input").on("change", function () {
+var fileName = $(this).val().split("\\").pop();
+$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
+document.querySelector('.AjaxForm').addEventListener('submit', function (e) {
+e.preventDefault();
+var formD = new FormData()
+formD.append('comentaire', $('#comentaire').val());
+formD.append('ville', $('#ville').val());
+formD.append('file', document.getElementById('customFile').files[0]);
+var contentType = {
+headers: {
+"content-type": "multipart/form-data"
+}
+};
+axios.post($(".AjaxForm").attr('action'), formD, contentType).then(function (response) {
+const $error = response.data.error;
+const newFilename = response.data.newFilename;
+if ($error == "empty" && newFilename == "empty") {
+$('#error').hide();
+$('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>il faut remplir au moin un champ !!</strong>');
+} else {
+const comentaire = response.data.comentaire;
+const nom = response.data.nom;
+const prenom = response.data.prenom;
+
+$('#comentaires').append("<h4>" + nom + " " + prenom + "</h4>");
+if ($error != "empty") {
+$('#comentaires').append("<p>" + comentaire + "</h>");
+$('#comentaire').val("");
+}
+if (newFilename != "empty") {
+const assetsBaseDir ="{{ asset('img/comentaire/') }}";
+$('#comentaires').append('<div class="container"><img style="height:200px; width:200px ;" src="' + assetsBaseDir + newFilename + '"></div>');
+}
+$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
+$('#error').hide();
+
+}
+
+}).catch(function (error) {
+console.log(error);
+});
+
+});
+})();
+								</script>
+
+							{% endblock %}

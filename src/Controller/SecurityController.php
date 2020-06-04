@@ -39,35 +39,4 @@ class SecurityController extends AbstractController
     {
         return $this->redirectToRoute('accuiel');
     }
-     /**
-     * @Route("/inscription", name="inscription")
-     */
-    public function inscription(UserRepository $userRepository,Request $request,UserPasswordEncoderInterface $userPasswordEncoderInterface){
-        $user =new User();
-        $form=$this->createForm(UserType::class,$user);
-        $form->handleRequest($request);
-        if($form->isSubmitted()&&$form->isValid()){
-            $password=$userPasswordEncoderInterface->encodePassword($user,$user->getPassword());
-            $user->setPassword($password);
-            $user->setRoles(["ROLE_USER"]);
-            $email=$userRepository->findOneBy(array('email'=>$user->getEmail()));
-              if(!empty($email)){
-                  $this->addFlash('message','email exist');
-                  return $this->redirectToRoute('inscription');
-             }
-             $entityManager=$this->getDoctrine()->getManager();
-             $entityManager->persist($user);
-             $entityManager->flush();
-             
-             $ville=$request->getSession()->get('ville');
-             if( $ville!=null){
-               return new RedirectResponse('/'.$ville.'/details');
-             }
-               return $this->redirectToRoute('home');
-
-        }
-
-        return $this->render('security/inscription.html.twig',['form' => $form->createView()]);
-
-    }
 }

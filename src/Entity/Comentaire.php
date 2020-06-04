@@ -21,6 +21,10 @@ class Comentaire
      * @ORM\Column(type="string", length=255)
      */
     private $comentaire;
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="comentaires")
@@ -44,12 +48,26 @@ class Comentaire
         return $this->comentaire;
     }
 
+   
     public function setComentaire(string $comentaire): self
     {
         $this->comentaire = $comentaire;
 
         return $this;
     }
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
 
     public function getVille(): ?Ville
     {

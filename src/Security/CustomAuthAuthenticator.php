@@ -92,10 +92,10 @@ class CustomAuthAuthenticator extends AbstractFormLoginAuthenticator implements 
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {   // $request->getSession()->get('_security.'.$providerKey.'.target_path')->set_include_path("xvxfv");
-          $ville=$request->getSession()->get('ville');
-          if( $ville!=null){
+        $ville=$request->getSession()->get('ville');   
+        if($ville!=null && $request->getSession()->get('_security.main.target_path')=='https://localhost:8000/comentaire'){
             return new RedirectResponse('/'.$ville.'/details');
-          }
+        }
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }

@@ -18,11 +18,8 @@ security:
             anonymous: lazy
             provider: app_user_provider
             guard:
-                 authenticators:
-                     - app.security.login_form_authenticator
-           # guard:
-               # authenticators:
-               #     - App\Security\CustomAuthAuthenticator
+                authenticators: 
+                 - App\Security\CustomAuthAuthenticator
             logout:
                 path: app_logout
                 target: home
