@@ -27,6 +27,9 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ asset('css/style.css')}}">
 		<link rel="stylesheet" href="{{ asset('css/style1.css')}}">
+		<link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	</head>
 	<body>
 		<!-- header-start -->
@@ -205,7 +208,9 @@
 			</div>
 		</div>
 	</div>
-</div></footer><!-- JS here -->
+</div>
+</footer>
+<!-- JS here -->
 <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}">
 </script><script src="{{ asset('js/vendor/jquery-1.12.4.min.js')}}">
 </script><script src="{{ asset('js/popper.min.js')}}"></script>
@@ -213,7 +218,11 @@
 <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{ asset('js/wow.min.js')}}"></script>
 <script src="{{ asset('js/jquery.slicknav.min.js')}}"></script>
-<script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script
-><script src="{{ asset('js/main.js')}}"></script>
-{% block javascripts %}{% endblock %}
-</body></html>
+<script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{ asset('js/main.js')}}"></script>
+<script src="{{ asset('js/ajax.js')}}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

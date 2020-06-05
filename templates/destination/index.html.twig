@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-     {{ app.session.set('destination','destination')}}
-     {% set v = app.session.remove('ville') %}
-	  {% set c= app.session.remove('contact') %}
+	{{ app.session.set('destination','destination')}}
+	{% set v = app.session.remove('ville') %}
+	{% set c= app.session.remove('contact') %}
 
 	<!-- bradcam_area  -->
 	<div class="bradcam_area bradcam_bg_2">
@@ -50,7 +50,7 @@
 												</select>
 											</div>
 										</div>
-									
+
 										<div class="col-lg-12">
 											<div class="form-group">
 												<select class="form-control">
@@ -65,7 +65,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="reset_btn">
 									<button class="boxed-btn4" type="submit">Réinitialiser</button>
 									<p id="ana"></p>
@@ -90,12 +90,15 @@
 										{# <p>{{ville.region.nom}}</p> #}
 										<div class="rating_days d-flex justify-content-between">
 											<span class="d-flex justify-content-center align-items-center">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<a href="#">(20 Review)</a>
+												<a href="{{path('ville_like', {'id':ville.id})}}" class="btn btn-link js-like">
+													{% if app.user  and  ville.isLikedByUser(app.user) %}
+														<i class="fas fa-heart fa-7x"></i>
+													{% else %}
+														<i class="far fa-heart fa-7x"></i>
+													{% endif %}
+													<span class="js-liks">{{ville.likes| length}}</span>
+													<span class="js-label">J'aime</span>
+												</a>
 											</span>
 
 										</div>

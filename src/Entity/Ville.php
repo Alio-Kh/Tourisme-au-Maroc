@@ -74,7 +74,7 @@ class Ville
     private $region;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -94,6 +94,11 @@ class Ville
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=VilleLike::class, mappedBy="ville")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->markers = new ArrayCollection();
@@ -104,6 +109,7 @@ class Ville
         $this->comentaires = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -393,5 +399,47 @@ class Ville
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|VilleLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(VilleLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(VilleLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getVille() === $this) {
+                $like->setVille(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /** 
+    *  @param User $user
+    *  @return boolen
+    */
+    public function isLikedByUser(User $user):bool{
+      foreach($this->likes as $like){
+          if($like->getUser()===$user)return true;
+      }
+      return  false ;
     }
 }

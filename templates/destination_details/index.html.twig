@@ -9,7 +9,17 @@
 	{% set c =  app.session.remove('contact') %}
 	<div class="destination_banner_wrap overlay" style="background-image:url({{asset('/img/place/'~ ville.image)}});">
 		<div class="destination_text text-center">
-			<h3>{{ville.name}}</h3>
+			<h3>{{ville.name | replace({'_': " "})}}</h3>
+			<span class="d-flex justify-content-center align-items-center">
+				<a href="{{path('ville_like', {'id':ville.id})}}" class="btn btn-link js-like">
+					{% if app.user  and  ville.isLikedByUser(app.user) %}
+						<i class="fas fa-heart fa-7x " style=" color: red;"></i>
+					{% else %}
+						<i class="far fa-heart fa-7x" style=" color: red;"></i>
+					{% endif %}
+
+				</a>
+			</span>
 		</div>
 	</div>
 	<!-- start description-->
@@ -18,28 +28,9 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8 col-md-9">
 					<div class="destination_info">
+
 						<h3>Description</h3>
-						<p>Ouarzazate est une ville au sud des montagnes du Haut Atlas marocain,
-																																																																																																																																																																																																											connue comme étant la porte du désert du Sahara. Son énorme Kasbah de Taourirt, abritant un
-																																																																																																																																																																																																											palais du XIXe siècle,
-																																																																																																																																																																																																											offre une vue sur le paysage rocailleux des environs, qui apparaît dans plusieurs films.
-						</p>
-						<p>
-							Au nord-ouest se trouve la ville fortifiée en terre rouge d'Aït-ben-Haddou, tandis que les
-																																																																																																																																																																																																											gorges rocailleuses du Toudra s'étendent au nord-est.
-																																																																																																																																																																																																											Une route serpente vers le sud-est, à travers les palmeraies luxuriantes de la vallée du
-																																																																																																																																																																																																											Drâa, en direction du désert.</p>
-						<p></p>
-						<div class="single_destination">
-							<h4>Kasbah de Taourirt</h4>
-							<p>La Kasbah de Taourirt et son ancienne médina se situent dans le centre-ville de
-																																																																																																																																																																																																																																								Ouarzazate. Une kasbah est l’équivalent de nos châteaux forts du Moyen-Âge,
-																																																																																																																																																																																																																																								soit une maison fortifiée dans laquelle habitait le seigneur local (le pacha) et sa
-																																																																																																																																																																																																																																								famille. Construite au XVIIe siècle en pisé (un mélange de terre et de paille séchées au
-																																																																																																																																																																																																																																								soleil),
-																																																																																																																																																																																																																																								cette belle demeure restaurée donne une idée de l’opulence du seigneur d’alors, un haut
-																																																																																																																																																																																																																																								dignitaire de la royauté marocaine</p>
-						</div>
+						{{ville.description | raw}}
 					</div>
 					<div class="bordered_1px"></div>
 				</div>
@@ -135,14 +126,14 @@
 									{% endif %}
 								</form>
 								{# <div class="col-lg-12">
-																																																																																																																																																																																																							                                        
-																																																																																																																						</div>
-																																																																																																																						<div class="col-lg-12">
-																																																																																																																																																																																																																																										
-																																																																																																																						</div>
-																																																																																																																						<div class="col-lg-12">
-																																																																																																																																																																																																																																										
-																																																																																																																						</div> #}
+																																																																																																																																																																																																																							                                        
+																																																																																																																																						</div>
+																																																																																																																																						<div class="col-lg-12">
+																																																																																																																																																																																																																																																										
+																																																																																																																																						</div>
+																																																																																																																																						<div class="col-lg-12">
+																																																																																																																																																																																																																																																										
+																																																																																																																																						</div> #}
 							</div>
 						</div>
 					</div>
@@ -383,6 +374,255 @@ m.setVisible(false);
 					</div>
 
 					<!-- end description-->
+
+					<!-- Start meteo -->
+					<style type="text/css">
+						@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+						{
+							# html,
+							body {
+								background-color: #F3F3F3;
+								font-family: 'Roboto', sans-serif;
+							} #
+						}
+
+						.card {
+							margin: 5% auto 0;
+							padding: 5px 30px;
+							height: 470px;
+							border-radius: 3px;
+							background-color: #fff;
+							box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+							-webkit-animation: open 2s cubic-bezier(0.39, 0, 0.38, 1);
+						}
+
+						@-webkit-keyframes open {
+							from {
+								padding: 0 30px;
+								height: 0;
+							}
+							to {
+								height: 470px;
+							}
+						}
+
+						h1,
+						h2,
+						h3,
+						h4 {
+							position: relative;
+						}
+
+						.dot {
+							font-size: 0.9em;
+						}
+
+						.sky {
+							position: relative;
+							margin-top: 108px;
+							width: 100px;
+							height: 100px;
+							border-radius: 50%;
+							background-color: #03A9F4;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;
+						}
+
+						.sun {
+							position: relative;
+							top: -3px;
+							width: 55px;
+							height: 55px;
+							border-radius: 50%;
+							background-color: #FFEB3B;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.5s;
+						}
+
+						.cloud {
+							position: absolute;
+							top: 60px;
+							left: 30px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.7s;
+						}
+
+						.cloud:before,
+						.cloud:after {
+							position: absolute;
+							display: block;
+							content: "";
+						}
+
+						.cloud:before {
+							margin-left: -10px;
+							width: 51px;
+							height: 18px;
+							background: #fff;
+						}
+
+						.cloud:after {
+							position: absolute;
+							top: -10px;
+							left: -22px;
+							width: 28px;
+							height: 28px;
+							border-radius: 50%;
+							background: #fff;
+							box-shadow: 50px -6px 0 6px #fff, 25px -19px 0 10px #fff;
+						}
+
+						table {
+							position: relative;
+							top: 10px;
+							width: 100%;
+							text-align: center;
+						}
+
+						tr:nth-child(1) td:nth-child(1),
+						tr:nth-child(1) td:nth-child(2),
+						tr:nth-child(1) td:nth-child(3),
+						tr:nth-child(1) td:nth-child(4),
+						tr:nth-child(1) td:nth-child(5) {
+							padding-bottom: 32px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.7s;
+						}
+
+						tr:nth-child(2) td:nth-child(1),
+						tr:nth-child(2) td:nth-child(2),
+						tr:nth-child(2) td:nth-child(3),
+						tr:nth-child(2) td:nth-child(4),
+						tr:nth-child(2) td:nth-child(5) {
+							padding-bottom: 7px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.9s;
+						}
+
+						tr:nth-child(3) td:nth-child(1),
+						tr:nth-child(3) td:nth-child(2),
+						tr:nth-child(3) td:nth-child(3),
+						tr:nth-child(3) td:nth-child(4),
+						tr:nth-child(3) td:nth-child(5) {
+							padding-bottom: 7px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.9s;
+						}
+
+						tr:nth-child(2),
+						tr:nth-child(3) {
+							font-size: 0.9em;
+						}
+
+						tr:nth-child(3) {
+							color: #999;
+						}
+
+						@-webkit-keyframes up {
+							0% {
+								opacity: 0;
+								-webkit-transform: translateY(15px);
+							}
+							50% {
+								opacity: 0;
+								-webkit-transform: translateY(15px);
+							}
+							99% {
+								-webkit-animation-play-state: paused;
+							}
+							100% {
+								opacity: 1;
+							}
+						}
+					</style>
+					<div class="popular_places_area">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6">
+								<div class="section_title text-center mb_70">
+									<h3>La Meteo</h3>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-5" style=" left: 390px;">
+							<div class="card">
+
+								<h2 style="font-weight: 300;
+																																										font-size: 2.25em;
+																																										-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1);
+																																									">{{ville.name}}</h2>
+								<h3 style="float: left;
+																																									margin-right: 33px;
+																																									top: 0px;
+																																									color: #777;
+																																									font-weight: 400;
+																																									font-size: 1em;
+																																									-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;" id="desc"></h3>
+								<h1 id="temp" style="float: right; color: #666; font-weight: 300; top: 32px; font-size: 6.59375em; line-height: 0.2em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;">&deg;</h1>
+								<div id="sky"></div>
+								<table>
+									<tr>
+										<td>TUE</td>
+										<td>WED</td>
+										<td>THU</td>
+										<td>FRI</td>
+										<td>SAT</td>
+									</tr>
+									<tr>
+										<td id="icond1"></td>
+										<td id="icond2"></td>
+										<td id="icond3"></td>
+										<td id="icond4"></td>
+										<td id="icond5"></td>
+									</tr>
+									<tr>
+										<td id="tempMaxd1"></td>
+										<td id="tempMaxd2"></td>
+										<td id="tempMaxd3"></td>
+										<td id="tempMaxd4"></td>
+										<td id="tempMaxd5"></td>
+									</tr>
+									<tr>
+										<td id="tempMind1"></td>
+										<td id="tempMind2"></td>
+										<td id="tempMind3"></td>
+										<td id="tempMind4"></td>
+										<td id="tempMind5"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+					<script>
+						var lat = {{ villeMarker.lat }};
+var lng = {{ villeMarker.lng }};
+
+fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lng + '&units=metric&appid=7215d0713dbd93f757a51b198da702cc').then(response => response.json()).then(data => {
+console.log(data);
+document.getElementById("temp").innerHTML = data.current.temp + '&deg;';
+document.getElementById("sky").innerHTML = '<img src=' + '{{ asset("img/weather/") }}' + data.daily[0].weather[0].icon + '.png' + '>';
+
+document.getElementById("desc").innerHTML = data.current.weather[0].description + '<span  id="wind" style="margin-left: 24px; color: #999; font-weight: 300;">Vent ' + data.current.wind_speed + 'm/s <span style="margin-left: 0;" class="dot">•</span> humidité ' + data.current.humidity + '%</span>';
+
+document.getElementById("icond1").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[1].weather[0].icon + '.png' + '>';
+document.getElementById("icond2").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[2].weather[0].icon + '.png' + '>';
+document.getElementById("icond3").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[3].weather[0].icon + '.png' + '>';
+document.getElementById("icond4").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[4].weather[0].icon + '.png' + '>';
+document.getElementById("icond5").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[5].weather[0].icon + '.png' + '>';
+
+document.getElementById("tempMaxd1").innerHTML = data.daily[1].temp.max + '&deg;';
+document.getElementById("tempMaxd2").innerHTML = data.daily[2].temp.max + '&deg;';
+document.getElementById("tempMaxd3").innerHTML = data.daily[3].temp.max + '&deg;';
+document.getElementById("tempMaxd4").innerHTML = data.daily[4].temp.max + '&deg;';
+document.getElementById("tempMaxd5").innerHTML = data.daily[5].temp.max + '&deg;';
+
+document.getElementById("tempMind1").innerHTML = data.daily[1].temp.min + '&deg;';
+document.getElementById("tempMind2").innerHTML = data.daily[2].temp.min + '&deg;';
+document.getElementById("tempMind3").innerHTML = data.daily[3].temp.min + '&deg;';
+document.getElementById("tempMind4").innerHTML = data.daily[4].temp.min + '&deg;';
+document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;';
+
+});
+					</script>
+
+					<!-- End meteo -->
+
+
 					{% if hotels is not empty  and hotelMarkers is not empty %}
 						<!-- start hotels-->
 						<div class="popular_places_area">
@@ -647,59 +887,5 @@ m.setVisible(false);
 
 
 								<!-- end comntaire-->
-
-							{% endblock %}
-							{% block javascripts %}
-								<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-								<script>
-									(function () {
-$(".custom-file-input").on("change", function () {
-var fileName = $(this).val().split("\\").pop();
-$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-
-document.querySelector('.AjaxForm').addEventListener('submit', function (e) {
-e.preventDefault();
-var formD = new FormData()
-formD.append('comentaire', $('#comentaire').val());
-formD.append('ville', $('#ville').val());
-formD.append('file', document.getElementById('customFile').files[0]);
-var contentType = {
-headers: {
-"content-type": "multipart/form-data"
-}
-};
-axios.post($(".AjaxForm").attr('action'), formD, contentType).then(function (response) {
-const $error = response.data.error;
-const newFilename = response.data.newFilename;
-if ($error == "empty" && newFilename == "empty") {
-$('#error').hide();
-$('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>il faut remplir au moin un champ !!</strong>');
-} else {
-const comentaire = response.data.comentaire;
-const nom = response.data.nom;
-const prenom = response.data.prenom;
-
-$('#comentaires').append("<h4>" + nom + " " + prenom + "</h4>");
-if ($error != "empty") {
-$('#comentaires').append("<p>" + comentaire + "</h>");
-$('#comentaire').val("");
-}
-if (newFilename != "empty") {
-const assetsBaseDir ="{{ asset('img/comentaire/') }}";
-$('#comentaires').append('<div class="container"><img style="height:200px; width:200px ;" src="' + assetsBaseDir + newFilename + '"></div>');
-}
-$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
-$('#error').hide();
-
-}
-
-}).catch(function (error) {
-console.log(error);
-});
-
-});
-})();
-								</script>
 
 							{% endblock %}

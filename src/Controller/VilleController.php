@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Ville;
+use App\Entity\VilleLike;
 use App\Form\Ville3Type;
+use App\Repository\VilleLikeRepository;
 use App\Repository\VilleRepository;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -83,12 +86,45 @@ class VilleController extends AbstractController
      */
     public function delete(Request $request, Ville $ville): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ville->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $ville->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($ville);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('ville_index');
+    }
+
+    /**
+     * @Route("/{id}/like", name="ville_like")
+     */
+    public function like(Ville $ville, VilleLikeRepository $villeLikeRepository): Response
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->json(['code' => 403, 'message' => 'Unthauthorized'], 403);
+        }
+        $entityManager = $this->getDoctrine()->getManager();
+        if ($ville->isLikedByUser($user)) {
+
+            $like = $villeLikeRepository->findOneBy(['ville' => $ville, 'user' => $user]);
+            $entityManager->remove($like);
+            $entityManager->flush();
+            return $this->json([
+                'code' => 200,
+                'message' => 'like bien supprimer ',
+                'likes' => $villeLikeRepository->count(['ville' => $ville])
+            ], 200);
+        }
+        $like = new VilleLike();
+        $like->setVille($ville);
+        $like->setUser($user);
+        $entityManager->persist($like);
+        $entityManager->flush();
+        return $this->json([
+            'code' => 200,
+            'message' => 'like bien ajouter ',
+            'likes' => $villeLikeRepository->count(['ville' => $ville])
+        ], 200);
     }
 }
