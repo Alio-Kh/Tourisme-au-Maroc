@@ -28,8 +28,10 @@
 		<script>
 			nameVilles.push("{{ ville.name }}");
 		</script>
+		<div class="js-user-rating" data-is-authenticated="{{ ville | json_encode | raw }}">
+     </div>
 	{% endfor %}
-
+     
 	<div class="popular_places_area">
 		<div class="container">
 			<div class="row">
@@ -112,37 +114,7 @@
 			</div>
 		</div>
 
-
 	{% endblock %}
 	{% block javascripts %}
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script>
-			(function () {
-
-document.querySelector('.chatAjaxForm').addEventListener('submit', function (e) {
-e.preventDefault();
-axios.post($(".chatAjaxForm").attr('action'), {idResion: $('#region').val()}).then(function (response) {
-const villes = response.data.villes;
-const newName = [];
-for (var i = 0; i < villes.length; i++) {
-newName.push(villes[i]["name"]);
-}
-for (var i = 0; i < nameVilles.length; i++) {
-if (nameVilles.includes(nameVilles[i]) && newName.includes(nameVilles[i])) {
-$('#' + nameVilles[i]).show();
-console.log("show " + nameVilles[i]);
-} else {
-$('#' + nameVilles[i]).hide();
-console.log("hide " + nameVilles[i]);
-}
-}
-
-}).catch(function (error) {
-console.log(error);
-});
-
-});
-})();
-		</script>
-
+		<script src="{{asset('js/filter-ajax.js')}}"></script>
 	{% endblock %}
