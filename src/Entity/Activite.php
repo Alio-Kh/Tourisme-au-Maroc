@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Ville;
 use Symfony\Component\HttpFoundation\File\File;
@@ -70,10 +72,16 @@ class Activite
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ActiviteLike::class, mappedBy="activite")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
         $this->updatedAt = new \DateTime('now');
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -190,4 +198,45 @@ class Activite
 
         return $this;
     }
+
+    /**
+     * @return Collection|ActiviteLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(ActiviteLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setActivite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(ActiviteLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getActivite() === $this) {
+                $like->setActivite(null);
+            }
+        }
+
+        return $this;
+    }
+      /** 
+    *  @param User $user
+    *  @return boolen
+    */
+    public function isLikedByUser(User $user):bool{
+        foreach($this->likes as $like){
+            if($like->getUser()===$user)return true;
+        }
+        return  false ;
+      }
 }

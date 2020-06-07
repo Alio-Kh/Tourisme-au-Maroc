@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CampingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Ville;
 use Symfony\Component\HttpFoundation\File\File;
@@ -71,10 +73,16 @@ class Camping
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CampingLike::class, mappedBy="camping")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,4 +199,45 @@ class Camping
 
         return $this;
     }
+
+    /**
+     * @return Collection|CampingLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(CampingLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setCamping($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(CampingLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getCamping() === $this) {
+                $like->setCamping(null);
+            }
+        }
+
+        return $this;
+    }
+      /** 
+    *  @param User $user
+    *  @return boolen
+    */
+    public function isLikedByUser(User $user):bool{
+        foreach($this->likes as $like){
+            if($like->getUser()===$user)return true;
+        }
+        return  false ;
+      }
 }

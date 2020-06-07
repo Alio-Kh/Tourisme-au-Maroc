@@ -126,14 +126,14 @@
 									{% endif %}
 								</form>
 								{# <div class="col-lg-12">
-																																																																																																																																																																																																																							                                        
-																																																																																																																																						</div>
-																																																																																																																																						<div class="col-lg-12">
-																																																																																																																																																																																																																																																										
-																																																																																																																																						</div>
-																																																																																																																																						<div class="col-lg-12">
-																																																																																																																																																																																																																																																										
-																																																																																																																																						</div> #}
+																																																																																																																																																																																																																															                                        
+																																																																																																																																														</div>
+																																																																																																																																														<div class="col-lg-12">
+																																																																																																																																																																																																																																																																		
+																																																																																																																																														</div>
+																																																																																																																																														<div class="col-lg-12">
+																																																																																																																																																																																																																																																																		
+																																																																																																																																														</div> #}
 							</div>
 						</div>
 					</div>
@@ -530,64 +530,58 @@ m.setVisible(false);
 						}
 					</style>
 					<div class="popular_places_area">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-6">
-								<div class="section_title text-center mb_70">
-									<h3>La Meteo</h3>
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="section_title text-center mb_70">
+										<h3>La Meteo</h3>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center">
+								<div class="col-lg-5">
+									<div class="card">
+
+										<h2 style="font-weight: 300; font-size: 2.25em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1); ">{{ville.name}}</h2>
+										<h3 id="day0" style="float: right; left: 260px; top: -47px; color: #777; font-weight: 400; font-size: 1em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;"></h3>
+										<h3 style="float: left; margin-right: 33px; top: 0px; color: #777; font-weight: 400; font-size: 1em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;" id="desc"></h3>
+										<h1 id="temp" style="float: right; color: #666; font-weight: 300; top: 32px; font-size: 6.59375em; line-height: 0.2em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;">&deg;</h1>
+										<div id="sky"></div>
+										<table>
+											<tr>
+												<td id="day1"></td>
+												<td id="day2"></td>
+												<td id="day3"></td>
+												<td id="day4"></td>
+												<td id="day5"></td>
+											</tr>
+											<tr>
+												<td id="icond1"></td>
+												<td id="icond2"></td>
+												<td id="icond3"></td>
+												<td id="icond4"></td>
+												<td id="icond5"></td>
+											</tr>
+											<tr>
+												<td id="tempMaxd1"></td>
+												<td id="tempMaxd2"></td>
+												<td id="tempMaxd3"></td>
+												<td id="tempMaxd4"></td>
+												<td id="tempMaxd5"></td>
+											</tr>
+											<tr>
+												<td id="tempMind1"></td>
+												<td id="tempMind2"></td>
+												<td id="tempMind3"></td>
+												<td id="tempMind4"></td>
+												<td id="tempMind5"></td>
+											</tr>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-5" style=" left: 390px;">
-							<div class="card">
-
-								<h2 style="font-weight: 300;
-																																										font-size: 2.25em;
-																																										-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1);
-																																									">{{ville.name}}</h2>
-								<h3 style="float: left;
-																																									margin-right: 33px;
-																																									top: 0px;
-																																									color: #777;
-																																									font-weight: 400;
-																																									font-size: 1em;
-																																									-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;" id="desc"></h3>
-								<h1 id="temp" style="float: right; color: #666; font-weight: 300; top: 32px; font-size: 6.59375em; line-height: 0.2em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;">&deg;</h1>
-								<div id="sky"></div>
-								<table>
-									<tr>
-										<td>TUE</td>
-										<td>WED</td>
-										<td>THU</td>
-										<td>FRI</td>
-										<td>SAT</td>
-									</tr>
-									<tr>
-										<td id="icond1"></td>
-										<td id="icond2"></td>
-										<td id="icond3"></td>
-										<td id="icond4"></td>
-										<td id="icond5"></td>
-									</tr>
-									<tr>
-										<td id="tempMaxd1"></td>
-										<td id="tempMaxd2"></td>
-										<td id="tempMaxd3"></td>
-										<td id="tempMaxd4"></td>
-										<td id="tempMaxd5"></td>
-									</tr>
-									<tr>
-										<td id="tempMind1"></td>
-										<td id="tempMind2"></td>
-										<td id="tempMind3"></td>
-										<td id="tempMind4"></td>
-										<td id="tempMind5"></td>
-									</tr>
-								</table>
-							</div>
-						</div>
 					</div>
-				</div>
 					<script>
 						var lat = {{ villeMarker.lat }};
 var lng = {{ villeMarker.lng }};
@@ -599,23 +593,35 @@ document.getElementById("sky").innerHTML = '<img src=' + '{{ asset("img/weather/
 
 document.getElementById("desc").innerHTML = data.current.weather[0].description + '<span  id="wind" style="margin-left: 24px; color: #999; font-weight: 300;">Vent ' + data.current.wind_speed + 'm/s <span style="margin-left: 0;" class="dot">•</span> humidité ' + data.current.humidity + '%</span>';
 
-document.getElementById("icond1").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[1].weather[0].icon + '.png' + '>';
-document.getElementById("icond2").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[2].weather[0].icon + '.png' + '>';
-document.getElementById("icond3").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[3].weather[0].icon + '.png' + '>';
-document.getElementById("icond4").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[4].weather[0].icon + '.png' + '>';
-document.getElementById("icond5").innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[5].weather[0].icon + '.png' + '>';
+var date0 = new Date();
+let dateLocale0 = date0.toLocaleString('fr-FR', {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
 
-document.getElementById("tempMaxd1").innerHTML = data.daily[1].temp.max + '&deg;';
-document.getElementById("tempMaxd2").innerHTML = data.daily[2].temp.max + '&deg;';
-document.getElementById("tempMaxd3").innerHTML = data.daily[3].temp.max + '&deg;';
-document.getElementById("tempMaxd4").innerHTML = data.daily[4].temp.max + '&deg;';
-document.getElementById("tempMaxd5").innerHTML = data.daily[5].temp.max + '&deg;';
+document.getElementById("day0").innerHTML = dateLocale0;
 
-document.getElementById("tempMind1").innerHTML = data.daily[1].temp.min + '&deg;';
-document.getElementById("tempMind2").innerHTML = data.daily[2].temp.min + '&deg;';
-document.getElementById("tempMind3").innerHTML = data.daily[3].temp.min + '&deg;';
-document.getElementById("tempMind4").innerHTML = data.daily[4].temp.min + '&deg;';
-document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;';
+for (var i = 1; i < 6; i++) {
+document.getElementById("tempMaxd" + i).innerHTML = data.daily[i].temp.max + '&deg;';
+
+document.getElementById("icond" + i).innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[i].weather[0].icon + '.png' + '>';
+
+document.getElementById("tempMind" + i).innerHTML = data.daily[i].temp.min + '&deg;';
+
+
+var date = new Date();
+date.setDate(new Date().getDate() + i);
+let dateLocale = date.toLocaleString('fr-FR', {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
+document.getElementById("day" + i).innerHTML = dateLocale.substr(0, 3).toUpperCase();
+
+}
 
 });
 					</script>
@@ -649,14 +655,16 @@ document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;
 															</a>
 															<div class="rating_days d-flex justify-content-between">
 																<span class="d-flex justify-content-center align-items-center">
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<a href="#">(20 Review)</a>
+																	<a href="{{path('hotel_like', {'id':hotel.id})}}" class="btn btn-link js-like-hotel">
+																		{% if app.user  and  hotel.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-hotel">{{hotel.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
 																</span>
-
 															</div>
 														</div>
 													</div>
@@ -695,13 +703,16 @@ document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;
 																<h3>{{marker.name}}</h3>
 															</a>
 															<div class="rating_days d-flex justify-content-between">
-																<span class="d-flex justify-content-center align-items-center">
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<a href="#">(20 Review)</a>
+															<span class="d-flex justify-content-center align-items-center">
+																	<a href="{{path('resto_like', {'id':resto.id})}}" class="btn btn-link js-like-resto">
+																		{% if app.user  and  resto.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-resto">{{resto.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
 																</span>
 															</div>
 														</div>
@@ -742,14 +753,16 @@ document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;
 															</a>
 															<div class="rating_days d-flex justify-content-between">
 																<span class="d-flex justify-content-center align-items-center">
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<a href="#">(20 Review)</a>
-																</span>
-															</div>
+																	<a href="{{path('activite_like', {'id':activite.id})}}" class="btn btn-link js-like-activite">
+																		{% if app.user  and  activite.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-activite">{{activite.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
+																</span></div>
 														</div>
 													</div>
 												</div>
@@ -788,13 +801,16 @@ document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;
 																<h3>{{marker.name}}</h3>
 															</a>
 															<div class="rating_days d-flex justify-content-between">
-																<span class="d-flex justify-content-center align-items-center">
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<a href="#">(20 Review)</a>
+															<span class="d-flex justify-content-center align-items-center">
+																	<a href="{{path('camping_like', {'id':camping.id})}}" class="btn btn-link js-like-camping">
+																		{% if app.user  and  camping.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-camping">{{camping.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
 																</span>
 															</div>
 														{% endif %}
@@ -889,48 +905,49 @@ document.getElementById("tempMind5").innerHTML = data.daily[5].temp.min + '&deg;
 								<!-- end comntaire-->
 
 							{% endblock %}
-							
-{% block javascripts %}
-		<script src="{{asset('js/commentaire-ajax.js')}}"></script>
-		<script>
-    (function(){
-    document.querySelector('.AjaxForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var formD = new FormData()
-        formD.append('comentaire', $('#comentaire').val());
-        formD.append('ville', $('#ville').val());
-        formD.append('file', document.getElementById('customFile').files[0]);
-        var contentType = {
-            headers: {
-                "content-type": "multipart/form-data"
-            }
-        };
-        axios.post($(".AjaxForm").attr('action'), formD, contentType).then(function(response) {
-            const $error = response.data.error;
-            const newFilename = response.data.newFilename;
-            if ($error == "empty" && newFilename == "empty") {
-                $('#error').hide();
-                $('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>il faut remplir au moin un champ !!</strong>');
-            } else {
-                const comentaire = response.data.comentaire;
-                const nom = response.data.nom;
-                const prenom = response.data.prenom;
-                $('#comentaires').append("<h4>" + nom + " " + prenom + "</h4>");
-                if ($error != "empty") {
-                    $('#comentaires').append("<p>" + comentaire + "</h>");
-                    $('#comentaire').val("");
-                }
-                if (newFilename != "empty") {
-                    const assetsBaseDir = "{{ asset('img/comentaire/') }}";
-                    $('#comentaires').append('<div class="container"><img style="height:200px; width:200px ;" src="' + assetsBaseDir + newFilename + '"></div>');
-                }
-                $('#comentaires').append('<div id="border" class="bordered_1px"></div>');
-                $('#error').hide();
-            }
-        }).catch(function(error) {
-            console.log(error);
-        });
-    });
-	})();
-	</script>
-{% endblock %}
+
+							{% block javascripts %}
+							   <script src="{{asset('js/like_hotel_camping_activite_resto_ajax.js')}}"></script>
+								<script src="{{asset('js/commentaire-ajax.js')}}"></script>
+								<script>
+									(function () {
+document.querySelector('.AjaxForm').addEventListener('submit', function (e) {
+e.preventDefault();
+var formD = new FormData()
+formD.append('comentaire', $('#comentaire').val());
+formD.append('ville', $('#ville').val());
+formD.append('file', document.getElementById('customFile').files[0]);
+var contentType = {
+headers: {
+"content-type": "multipart/form-data"
+}
+};
+axios.post($(".AjaxForm").attr('action'), formD, contentType).then(function (response) {
+const $error = response.data.error;
+const newFilename = response.data.newFilename;
+if ($error == "empty" && newFilename == "empty") {
+$('#error').hide();
+$('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>il faut remplir au moin un champ !!</strong>');
+} else {
+const comentaire = response.data.comentaire;
+const nom = response.data.nom;
+const prenom = response.data.prenom;
+$('#comentaires').append("<h4>" + nom + " " + prenom + "</h4>");
+if ($error != "empty") {
+$('#comentaires').append("<p>" + comentaire + "</h>");
+$('#comentaire').val("");
+}
+if (newFilename != "empty") {
+const assetsBaseDir = "{{ asset('img/comentaire/') }}";
+$('#comentaires').append('<div class="container"><img style="height:200px; width:200px ;" src="' + assetsBaseDir + newFilename + '"></div>');
+}
+$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
+$('#error').hide();
+}
+}).catch(function (error) {
+console.log(error);
+});
+});
+})();
+								</script>
+							{% endblock %}

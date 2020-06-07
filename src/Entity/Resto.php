@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RestoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Ville;
 use Symfony\Component\HttpFoundation\File\File;
@@ -65,6 +67,11 @@ class Resto
      */
     private $ville;
 
+    /**
+     * @ORM\OneToMany(targetEntity=RestoLike::class, mappedBy="resto")
+     */
+    private $likes;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +93,7 @@ class Resto
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->likes = new ArrayCollection();
     }
 
     /**
@@ -173,4 +181,45 @@ class Resto
 
         return $this;
     }
+
+    /**
+     * @return Collection|RestoLike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(RestoLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setResto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(RestoLike $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getResto() === $this) {
+                $like->setResto(null);
+            }
+        }
+
+        return $this;
+    }
+      /** 
+    *  @param User $user
+    *  @return boolen
+    */
+    public function isLikedByUser(User $user):bool{
+        foreach($this->likes as $like){
+            if($like->getUser()===$user)return true;
+        }
+        return  false ;
+      }
 }

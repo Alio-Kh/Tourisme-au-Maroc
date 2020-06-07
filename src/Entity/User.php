@@ -72,10 +72,34 @@ class User implements UserInterface
      */
     private $likes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=HotelLike::class, mappedBy="user")
+     */
+    private $hotelLikes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=RestoLike::class, mappedBy="user")
+     */
+    private $restoLikes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ActiviteLike::class, mappedBy="user")
+     */
+    private $activiteLikes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CampingLike::class, mappedBy="user")
+     */
+    private $campingLikes;
+
     public function __construct()
     {
         $this->comentaires = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->hotelLikes = new ArrayCollection();
+        $this->restoLikes = new ArrayCollection();
+        $this->activiteLikes = new ArrayCollection();
+        $this->campingLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -264,6 +288,130 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($like->getUser() === $this) {
                 $like->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|HotelLike[]
+     */
+    public function getHotelLikes(): Collection
+    {
+        return $this->hotelLikes;
+    }
+
+    public function addHotelLike(HotelLike $hotelLike): self
+    {
+        if (!$this->hotelLikes->contains($hotelLike)) {
+            $this->hotelLikes[] = $hotelLike;
+            $hotelLike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelLike(HotelLike $hotelLike): self
+    {
+        if ($this->hotelLikes->contains($hotelLike)) {
+            $this->hotelLikes->removeElement($hotelLike);
+            // set the owning side to null (unless already changed)
+            if ($hotelLike->getUser() === $this) {
+                $hotelLike->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RestoLike[]
+     */
+    public function getRestoLikes(): Collection
+    {
+        return $this->restoLikes;
+    }
+
+    public function addRestoLike(RestoLike $restoLike): self
+    {
+        if (!$this->restoLikes->contains($restoLike)) {
+            $this->restoLikes[] = $restoLike;
+            $restoLike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestoLike(RestoLike $restoLike): self
+    {
+        if ($this->restoLikes->contains($restoLike)) {
+            $this->restoLikes->removeElement($restoLike);
+            // set the owning side to null (unless already changed)
+            if ($restoLike->getUser() === $this) {
+                $restoLike->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ActiviteLike[]
+     */
+    public function getActiviteLikes(): Collection
+    {
+        return $this->activiteLikes;
+    }
+
+    public function addActiviteLike(ActiviteLike $activiteLike): self
+    {
+        if (!$this->activiteLikes->contains($activiteLike)) {
+            $this->activiteLikes[] = $activiteLike;
+            $activiteLike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActiviteLike(ActiviteLike $activiteLike): self
+    {
+        if ($this->activiteLikes->contains($activiteLike)) {
+            $this->activiteLikes->removeElement($activiteLike);
+            // set the owning side to null (unless already changed)
+            if ($activiteLike->getUser() === $this) {
+                $activiteLike->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CampingLike[]
+     */
+    public function getCampingLikes(): Collection
+    {
+        return $this->campingLikes;
+    }
+
+    public function addCampingLike(CampingLike $campingLike): self
+    {
+        if (!$this->campingLikes->contains($campingLike)) {
+            $this->campingLikes[] = $campingLike;
+            $campingLike->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCampingLike(CampingLike $campingLike): self
+    {
+        if ($this->campingLikes->contains($campingLike)) {
+            $this->campingLikes->removeElement($campingLike);
+            // set the owning side to null (unless already changed)
+            if ($campingLike->getUser() === $this) {
+                $campingLike->setUser(null);
             }
         }
 
